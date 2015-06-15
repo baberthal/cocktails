@@ -1,0 +1,58 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/morgan/projects/cocktails/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        null
+      ],
+      "/Users/morgan/projects/cocktails/app/controllers/cocktail_recipes_controller.rb": [
+        1,
+        1,
+        6,
+        5,
+        null,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/morgan/projects/cocktails/app/controllers/static_pages_controller.rb": [
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/morgan/projects/cocktails/app/controllers/templates_controller.rb": [
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/morgan/projects/cocktails/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/morgan/projects/cocktails/app/helpers/cocktail_recipes_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/morgan/projects/cocktails/app/helpers/static_pages_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/morgan/projects/cocktails/app/helpers/templates_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/morgan/projects/cocktails/app/models/cocktail_recipe.rb": [
+        1,
+        null
+      ]
+    },
+    "timestamp": 1434382517
+  }
+}

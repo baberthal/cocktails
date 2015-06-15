@@ -1,0 +1,14 @@
+%header.row
+  %h1.text-center.col-md-10.col-md-offset-1 Recently Added Recipes
+
+%hr
+
+%section.row
+  %ul.list-unstyled
+    %li{"ng-repeat" => "cocktailRecipe in cocktailRecipes"}
+      %section.well.col-md-6.col-md-offset-3
+        %h1.h3.col-md-7.text-right{style: 'margin-top:0'}
+          %a{href: '#'} {{ cocktailRecipe.name }}
+        .col-md-5
+          %button.btn.btn-info Edit
+          %button.btn.btn-danger Delete

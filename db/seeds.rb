@@ -5,3 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+CocktailRecipe.create!([
+  {name: "Margarita"},
+  {name: "Manhattan"},
+  {name: "Singapore Sling"},
+  {name: "Moscow Mule"}
+])
+
+p "Created #{CocktailRecipe.count} cocktail recipes"

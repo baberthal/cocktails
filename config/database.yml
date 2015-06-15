@@ -17,8 +17,9 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  # For details on connection pooling, see rails configuration guide
-  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  username: morgan
+  host: localhost
+  password:
   pool: 5
 
 development:
@@ -81,7 +82,7 @@ test: &test
 production:
   <<: *default
   database: cocktails_production
-  username: cocktails
+  username: morgan
   password: <%= ENV['COCKTAILS_DATABASE_PASSWORD'] %>
 
 cucumber:

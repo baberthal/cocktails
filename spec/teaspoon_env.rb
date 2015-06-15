@@ -34,7 +34,7 @@ Teaspoon.configure do |config|
     # Note: If no version is specified, the latest is assumed.
     #
     # Versions: 1.3.1, 2.0.3, 2.1.3, 2.2.0
-    suite.use_framework :jasmine, "2.2.0"
+    suite.use_framework :jasmine, "1.3.1"
 
     # Specify a file matcher as a regular expression and all matching files will be loaded when the suite is run. These
     # files need to be within an asset path. You can add asset paths using the `config.asset_paths`.
@@ -65,7 +65,7 @@ Teaspoon.configure do |config|
     #suite.hook :fixtures, &proc{}
 
     # Determine whether specs loaded into the test harness should be embedded as individual script tags or concatenated
-    # into a single file. Similar to Rails' asset `debug: true` and `config.assets.debug = true` options. By default, 
+    # into a single file. Similar to Rails' asset `debug: true` and `config.assets.debug = true` options. By default,
     # Teaspoon expands all assets to provide more valuable stack traces that reference individual source files.
     #suite.expand_assets = true
   end
@@ -94,7 +94,7 @@ Teaspoon.configure do |config|
   # PhantomJS: https://github.com/modeset/teaspoon/wiki/Using-PhantomJS
   # Selenium Webdriver: https://github.com/modeset/teaspoon/wiki/Using-Selenium-WebDriver
   # Capybara Webkit: https://github.com/modeset/teaspoon/wiki/Using-Capybara-Webkit
-  #config.driver = :phantomjs
+  # config.driver = :phantomjs
 
   # Specify additional options for the driver.
   #
@@ -125,14 +125,14 @@ Teaspoon.configure do |config|
   # Note: Output files can be specified by using `"junit>/path/to/output.xml"`.
   #
   # Available: :dot, :clean, :documentation, :json, :junit, :pride, :rspec_html, :snowday, :swayze_or_oprah, :tap, :tap_y, :teamcity
-  #config.formatters = [:dot]
+  config.formatters = [:dot]
 
   # Specify if you want color output from the formatters.
-  #config.color = true
+  config.color = true
 
   # Teaspoon pipes all console[log/debug/error] to $stdout. This is useful to catch places where you've forgotten to
   # remove them, but in verbose applications this may not be desirable.
-  #config.suppress_log = false
+  # config.suppress_log = true
 
   # COVERAGE REPORTS / THRESHOLD ASSERTIONS
   #
@@ -149,7 +149,7 @@ Teaspoon.configure do |config|
   # Specify that you always want a coverage configuration to be used. Otherwise, specify that you want coverage
   # on the CLI.
   # Set this to "true" or the name of your coverage config.
-  #config.use_coverage = nil
+  config.use_coverage = true
 
   # You can have multiple coverage configs by passing a name to config.coverage.
   # e.g. config.coverage :ci do |coverage|
@@ -158,15 +158,15 @@ Teaspoon.configure do |config|
     # Which coverage reports Istanbul should generate. Correlates directly to what Istanbul supports.
     #
     # Available: text-summary, text, html, lcov, lcovonly, cobertura, teamcity
-    #coverage.reports = ["text-summary", "html"]
+    coverage.reports = ["text-summary", "html"]
 
     # The path that the coverage should be written to - when there's an artifact to write to disk.
     # Note: Relative to `config.root`.
-    #coverage.output_path = "coverage"
+    coverage.output_path = "coverage"
 
     # Assets to be ignored when generating coverage reports. Accepts an array of filenames or regular expressions. The
     # default excludes assets from vendor, gems and support libraries.
-    #coverage.ignore = [%r{/lib/ruby/gems/}, %r{/vendor/assets/}, %r{/support/}, %r{/(.+)_helper.}]
+    coverage.ignore = [%r{/lib/ruby/gems/}, %r{/vendor/assets/}, %r{/support/}, %r{/(.+)_helper.}]
 
     # Various thresholds requirements can be defined, and those thresholds will be checked at the end of a run. If any
     # aren't met the run will fail with a message. Thresholds can be defined as a percentage (0-100), or nil.

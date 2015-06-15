@@ -29,21 +29,12 @@ end
 
 coffeescript_options = {
   input: 'app/assets/javascripts',
-  output: 'app/assets/javascripts',
+  output: 'js_out',
   patterns: [%r{^app/assets/javascripts/(.+\.(?:coffee|coffee\.md|litcoffee))$}]
 }
 
 guard 'coffeescript', coffeescript_options do
   coffeescript_options[:patterns].each { |pattern| watch(pattern) }
-end
-
-guard "cucumber" do
-  watch(%r{^features/.+\.feature$})
-  watch(%r{^features/support/.+$})          { "features" }
-
-  watch(%r{^features/step_definitions/(.+)_steps\.rb$}) do |m|
-    Dir[File.join("**/#{m[1]}.feature")][0] || "features"
-  end
 end
 
 guard 'livereload' do
@@ -64,7 +55,7 @@ end
 #  * zeus: 'zeus rspec' (requires the server to be started separately)
 #  * 'just' rspec: 'rspec'
 
-guard :rspec, cmd: "bundle exec rspec" do
+guard :rspec, cmd: "zeus rspec -f html -o ./tmp/spec_results.html -f progress" do
   require "guard/rspec/dsl"
   dsl = Guard::RSpec::Dsl.new(self)
 
@@ -109,60 +100,12 @@ guard :rspec, cmd: "bundle exec rspec" do
   end
 end
 
-# Add files and commands to this file, like the example:
-#   watch(%r{file/path}) { `command(s)` }
-#
-guard :shell do
-  watch(/(.*).txt/) {|m| `tail #{m[0]}` }
-end
-
-guard :teaspoon do
+guard :teaspoon, formatters: :dot, color: true, suppress_log: true do
   # Implementation files
-  watch(%r{^app/assets/javascripts/(.+).js}) { |m| "#{m[1]}_spec" }
+  watch(%r{^app/assets/javascripts/(.+)\.(js|coffee)}) { |m| "#{m[1]}_spec" }
 
   # Specs / Helpers
   watch(%r{^spec/javascripts/(.*)})
 end
 
-guard 'zeus' do
-  require 'ostruct'
-
-  rspec = OpenStruct.new
-  rspec.spec_dir = 'spec'
-  rspec.spec = ->(m) { "#{rspec.spec_dir}/#{m}_spec.rb" }
-  rspec.spec_helper = "#{rspec.spec_dir}/spec_helper.rb"
-
-  # matchers
-  rspec.spec_files = /^#{rspec.spec_dir}\/.+_spec\.rb$/
-
-  # Ruby apps
-  ruby = OpenStruct.new
-  ruby.lib_files = /^(lib\/.+)\.rb$/
-
-  watch(rspec.spec_files)
-  watch(rspec.spec_helper) { rspec.spec_dir }
-  watch(ruby.lib_files) { |m| rspec.spec.call(m[1]) }
-
-  # Rails example
-  rails = OpenStruct.new
-  rails.app_files = /^app\/(.+)\.rb$/
-  rails.views_n_layouts = /^app\/(.+(?:\.erb|\.haml|\.slim))$/
-  rails.controllers = %r{^app/controllers/(.+)_controller\.rb$}
-
-  watch(rails.app_files) { |m| rspec.spec.call(m[1]) }
-  watch(rails.views_n_layouts) { |m| rspec.spec.call(m[1]) }
-  watch(rails.controllers) do |m|
-    [
-      rspec.spec.call("routing/#{m[1]}_routing"),
-      rspec.spec.call("controllers/#{m[1]}_controller"),
-      rspec.spec.call("acceptance/#{m[1]}")
-    ]
-  end
-
-  # TestUnit
-  # watch(%r|^test/(.*)_test\.rb$|)
-  # watch(%r|^lib/(.*)([^/]+)\.rb$|)     { |m| "test/#{m[1]}test_#{m[2]}.rb" }
-  # watch(%r|^test/test_helper\.rb$|)    { "test" }
-  # watch(%r|^app/controllers/(.*)\.rb$|) { |m| "test/functional/#{m[1]}_test.rb" }
-  # watch(%r|^app/models/(.*)\.rb$|)      { |m| "test/unit/#{m[1]}_test.rb" }
-end
+#  vim: set ts=8 sw=2 tw=0 ft=ruby et :

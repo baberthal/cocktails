@@ -9,13 +9,13 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
-gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'postgres_ext'
-gem 'bower-rails'
 gem 'puma'
-gem 'rails_12factor'
+gem 'foreman'
+gem 'haml'
+gem 'haml-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -35,16 +35,13 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-theme'
   gem 'factory_girl_rails'
-  gem 'rb-fsevent', require: false
+  gem 'rb-fsevent', require: false if RUBY_PLATFORM =~ /darwin/i
   gem 'launchy'
   gem 'guard-rspec', require: false
   gem 'guard-livereload', require: false
   gem 'guard-bundler', require: false
-  gem 'guard-teaspoon'
-  gem 'guard-shell'
+  gem 'guard-teaspoon', github: 'modeset/guard-teaspoon'
   gem 'guard-coffeescript'
-  gem 'guard-cucumber'
-  gem 'guard-zeus'
   gem 'ruby_gntp'
   gem 'capybara'
   gem 'database_cleaner'
@@ -52,7 +49,6 @@ group :development, :test do
   gem 'phantomjs'
   gem 'teaspoon-jasmine'
   gem 'poltergeist'
-  gem 'cucumber-rails', require: false
   gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers'
   gem 'seed_dump'
   gem 'simplecov', require: false

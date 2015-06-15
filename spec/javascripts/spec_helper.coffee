@@ -5,13 +5,9 @@
 # require support/sinon
 # require support/your-support-file
 #
-# PhantomJS (Teaspoons default driver) doesn't have support for Function.prototype.bind, which has caused confusion.
-# Use this polyfill to avoid the confusion.
 #= require support/bind-poly
-#
-# You can require your own javascript files here. By default this will include everything in application, however you
-# may get better load performance if you require the specific files that are being used in the spec that tests them.
 #= require application
+#= require angular-mocks
 #
 # Deferring execution
 # If you're using CommonJS, RequireJS or some other asynchronous library you can defer execution. Call
@@ -30,3 +26,27 @@
 # the configuration and use this file as a manifest.
 #
 # For more information: http://github.com/modeset/teaspoon
+
+
+beforeEach(module("cocktails"))
+
+beforeEach inject(_$httpBackend_,_$compile_,$rootScope,$controller,$location,$injector,$timeout) ->
+  @scope = $rootScope.$new()
+  @http = _$httpBackend_
+  @compile = _$compile_
+  @location = $location
+  @controller = $controller
+  @injector = $injector
+  @timeout = $timeout
+  @model = (name) ->
+    @injector.get(name)
+  @eventLoop =
+    @flush: =>
+      @scope.$digest()
+  @sandbox = sinon.sandbox.create()
+
+afterEach ->
+  @http.resetExpectations()
+  @http.verifyNoOutstandingExpectation()
+
+#  vim: set ts=8 sw=2 tw=0 ft=coffee et :
