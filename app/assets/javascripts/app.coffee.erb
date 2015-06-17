@@ -1,4 +1,4 @@
-cocktails = angular.module("cocktails", [
+angular.module("cocktails", [
   'ngMaterial',
   'rails',
   'ui.router',
@@ -6,7 +6,7 @@ cocktails = angular.module("cocktails", [
   'services'
 ])
 
-cocktails.config([
+.config([
   '$httpProvider',
   '$stateProvider',
   '$urlRouterProvider',
@@ -24,28 +24,8 @@ cocktails.config([
       )
 
     $mdIconProvider.defaultFontSet("material-icons")
+                   .iconSet('avatars', "<%= asset_url('avatars.svg') %>")
 ])
 
 controllers = angular.module('controllers', [])
-controllers.controller "CocktailsCtrl", [
-  '$scope',
-  'CocktailRecipe',
-    ($scope,CocktailRecipe) ->
-      CocktailRecipe.query().then (results) ->
-        $scope.cocktailRecipes = results
-]
-
-controllers.controller "NavCtrl", [
-  '$scope',
-  ($scope) ->
-]
-
 services = angular.module('services', [])
-services.factory "CocktailRecipe", [
-  'railsResourceFactory',
-  (railsResourceFactory) ->
-    resource = railsResourceFactory
-      url: '/cocktail_recipes'
-      name: 'cocktail_recipe'
-]
-

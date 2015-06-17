@@ -18,7 +18,7 @@
 //= require angular-material
 //= require angular-messages
 //= require angular-ui-router
-//= require app
 //= require angularjs-rails-resource
 //= require angularjs-rails-resource/extensions/snapshots
+//= require app
 //= require_tree .

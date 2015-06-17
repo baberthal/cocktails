@@ -1,49 +1,29 @@
+#= require spec_helper
+
 describe 'CocktailsCtrl', ->
-  scope       = null
-  ctrl        = null
-  location    = null
-  httpBackend = null
-  CocktailRecipe = null
-
-  setupController = (results) ->
-    inject(($location, $rootScope, _CocktailRecipe_, $httpBackend, $controller) ->
-      scope          = $rootScope.$new()
-      location       = $location
-      CocktailRecipe = _CocktailRecipe_
-      httpBackend    = $httpBackend
-
-      request = new RegExp("\/cocktail_recipes")
-      httpBackend.expectGET(request).respond(results)
-
-      ctrl        = $controller("CocktailsCtrl",
-                                $scope: scope
-                                $location: location)
-    )
-
-  beforeEach(module("cocktails"))
-
-  afterEach ->
-    httpBackend.verifyNoOutstandingExpectation()
-    httpBackend.verifyNoOutstandingRequest()
+  beforeEach ->
+    @controller('CocktailsCtrl', { $scope: @scope })
+    @CocktailRecipe = @model('CocktailRecipe')
+    @cocktailRecipes = [
+      {
+        id: 2
+        name: 'Margarita (Cadillac)'
+      },
+      {
+        id: 1
+        name: 'Margarita'
+      }
+    ]
+    @http.whenGET('/cocktail_recipes').respond(200, @cocktailRecipes)
+    @http.flush()
 
   describe 'controller initialization', ->
     describe 'cocktail recipe index', ->
-      cocktailRecipes = [
-        {
-          id: 2
-          name: 'Margarita (Cadillac)'
-        },
-        {
-          id: 1
-          name: 'Margarita'
-        }
-      ]
-      beforeEach ->
-        setupController(cocktailRecipes)
-        httpBackend.flush()
+      it 'sets up the list of recent cocktail recipes', ->
+        expect(@scope.cocktailRecipes.length).toEqual(2)
 
       it 'calls the backend', ->
-        expect(scope.cocktailRecipes).toEqualData(cocktailRecipes)
+        expect(@scope.cocktailRecipes).toEqualData(@cocktailRecipes)
 
 
 # vim: set ts=8 sw=2 tw=0 ft=coffee et :

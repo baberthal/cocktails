@@ -34,7 +34,7 @@ Teaspoon.configure do |config|
     # Note: If no version is specified, the latest is assumed.
     #
     # Versions: 1.3.1, 2.0.3, 2.1.3, 2.2.0
-    suite.use_framework :jasmine, "1.3.1"
+    suite.use_framework :jasmine, "2.2.0"
 
     # Specify a file matcher as a regular expression and all matching files will be loaded when the suite is run. These
     # files need to be within an asset path. You can add asset paths using the `config.asset_paths`.
@@ -158,7 +158,7 @@ Teaspoon.configure do |config|
     # Which coverage reports Istanbul should generate. Correlates directly to what Istanbul supports.
     #
     # Available: text-summary, text, html, lcov, lcovonly, cobertura, teamcity
-    coverage.reports = ["text-summary", "html"]
+    coverage.reports = ["html"]
 
     # The path that the coverage should be written to - when there's an artifact to write to disk.
     # Note: Relative to `config.root`.

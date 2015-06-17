@@ -1,2 +1,33 @@
-.view-container
-  .view-frame.animate-view.ui-view
+%section{:layout => "row", "ng-controller" => "NavCtrl"}
+  %md-sidenav.site-sidenav.md-sidenav-left.md-whiteframe-z2{"md-component-id" => "left", "md-is-locked-open" => "$mdMedia('gt-md')", :layout => "column", "layout-fill" => ""}
+    %md-toolbar.md-hue-1.md-medium-tall.md-whiteframe-z1
+      %md-list
+        %md-list-item.md-2-line{:style => "vertical-align: middle;"}
+          %md-icon.avatar{"md-svg-icon" => "avatars:svg-1"}
+          .md-list-item-text
+            %h3 {{ currentUser.name }}
+            %h4 {{ currentUser.email }}
+    %md-list.sidenav-list
+      %md-list-item{"ng-repeat" => "it in menu"}
+        %md-button{"ng-class" => "{'selected' : it === nav.selected }", "ui-sref" => "{{it.action}}"}
+          %md-icon {{ it.icon }}
+          {{ it.name }}
+    %md-divider
+    %md-list
+      %md-list-item{"ng-repeat" => "it in userMenu"}
+        %md-button{"ng-click" => "it.action", "ng-class" => ""}
+  %div{:flex => "", :layout => "column", :tabIndex => "-1", :role => "main"}
+    %md-toolbar.md-whiteframe-z2{:layout => "row"}
+      .md-toolbar-tools
+        %md-button.md-icon-button{"aria-label" => "Settings", "hide-gt-md" => ""}
+          %md-icon menu
+        %h2
+          %span
+            Cocktails!
+        %span{:flex => ""}
+        %md-button.md-icon-button{"aria-label" => "Search", "ui-sref" => 'search'}
+          %md-icon search
+    %md-content
+      %ui-view
+
+-#  vim: set ts=8 sw=2 tw=0 ft=haml et :
