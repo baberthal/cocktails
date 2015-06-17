@@ -13,9 +13,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'postgres_ext'
 gem 'puma'
-gem 'foreman'
 gem 'haml'
 gem 'haml-rails'
+gem 'inline_svg'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -4,13 +4,13 @@ RSpec.describe CocktailRecipesController, type: :controller do
   render_views
   describe "#index" do
     before do
-      create(:cocktail_recipe, name: "Margarita")
-      create(:cocktail_recipe, name: "Margarita (Cadillac)")
-      create(:cocktail_recipe, name: "Manhattan")
-      create(:cocktail_recipe, name: "Singapore Sling")
+      @c1 = create(:cocktail_recipe, name: "Margarita")
+      @c2 = create(:cocktail_recipe, name: "Margarita (Cadillac)")
+      @c3 = create(:cocktail_recipe, name: "Manhattan")
+      @c4 = create(:cocktail_recipe, name: "Singapore Sling")
 
       xhr :get, :index, format: :json, keywords: keywords
-    end
+      end
 
     subject(:results) { JSON.parse(response.body) }
 
@@ -38,6 +38,25 @@ RSpec.describe CocktailRecipesController, type: :controller do
       let(:keywords) { 'foo' }
       it 'should return no results' do
         expect(results.size).to eq 0
+      end
+    end
+
+    context 'when there is no search' do
+      let(:keywords) { nil }
+      it 'should 200' do
+        expect(response.status).to eq 200
+      end
+
+      it 'should return all the cocktail recipes' do
+        expect(results.size).to eq 4
+      end
+
+      it 'should order the results by created at' do
+        expect(results.map(&extract_name)).to include 'Margarita'
+        expect(results.map(&extract_name)).to include 'Margarita (Cadillac)'
+        expect(results.map(&extract_name)).to include 'Manhattan'
+        expect(results.map(&extract_name)).to include 'Singapore Sling'
+
       end
     end
 

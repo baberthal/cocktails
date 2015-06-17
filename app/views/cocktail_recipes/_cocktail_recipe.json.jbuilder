@@ -1,1 +1,1 @@
-json.(cocktail_recipe, :id, :name, :instructions)
+json.(cocktail_recipe, :id, :name, :instructions, :description)

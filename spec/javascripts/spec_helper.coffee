@@ -17,11 +17,13 @@ beforeEach(module("cocktails"))
 beforeEach ->
   jasmine.addMatchers(customMatchers)
 
-beforeEach inject (_$httpBackend_, $rootScope, $location, $controller, $injector) ->
+beforeEach inject (_$httpBackend_, $rootScope, $location, $controller, $injector, $state, $stateParams) ->
   @scope = $rootScope.$new()
   @http  = _$httpBackend_
   @location = $location
   @controller = $controller
+  @state = $state
+  @stateParams = $stateParams
   @injector = $injector
   @model = (name) =>
     @injector.get(name)

@@ -8,23 +8,14 @@ angular.module("cocktails", [
 
 .config([
   '$httpProvider',
-  '$stateProvider',
-  '$urlRouterProvider',
   '$mdIconProvider',
-  ($httpProvider, $stateProvider, $urlRouterProvider, $mdIconProvider) ->
+  ($httpProvider, $mdIconProvider) ->
     $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
-
-    $urlRouterProvider.otherwise('/')
-
-    $stateProvider
-      .state('home',
-        url: '/'
-        templateUrl: '/templates/index.html'
-        controller: "CocktailsCtrl"
-      )
 
     $mdIconProvider.defaultFontSet("material-icons")
                    .iconSet('avatars', "<%= asset_url('avatars.svg') %>")
+                   .icon('logout', "<%= asset_url('logout.svg') %>")
+                   .icon('view_account', "<%= asset_url('person.svg') %>")
 ])
 
 controllers = angular.module('controllers', [])

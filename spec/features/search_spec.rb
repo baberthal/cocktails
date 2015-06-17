@@ -9,7 +9,7 @@ feature 'Looking up cocktail recipes', js: true do
   end
 
   scenario 'finding recipes' do
-    visit '/'
+    visit '/#/search'
     fill_in 'keywords', with: 'marg'
     click_on 'Search'
 

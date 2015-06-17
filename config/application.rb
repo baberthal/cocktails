@@ -41,7 +41,7 @@ module Cocktails
     ::Sass::Script::Value::Number.precision = [8, ::Sass::Script::Value::Number.precision].max
 
     config.generators do |g|
-      g.template_engine :haml
+      g.template_engine :jbuilder
       g.test_framework :rspec,
         view_specs: false,
         helper_specs: false,
@@ -50,7 +50,6 @@ module Cocktails
         controller_specs: true
       g.javascripts false
       g.stylesheets false
-      g.assets false
     end
   end
 end
