@@ -1,6 +1,6 @@
 angular.module('controllers')
-.controller("CocktailsCtrl", [ '$scope', 'CocktailRecipe',
-  ($scope,CocktailRecipe) ->
-    CocktailRecipe.query().then (results) ->
+.controller("CocktailsCtrl", [ '$scope', 'Cocktail',
+  ($scope,Cocktail) ->
+    Cocktail.query().then (results) ->
       $scope.cocktailRecipes = results
 ])

@@ -6,6 +6,7 @@ describe 'SideNavCtrl', ->
   beforeEach ->
     @controller('SideNavCtrl', { $scope: @scope })
     templateRequest = new RegExp("\/templates\/*")
+    @http.expectPOST('/users/sign_in.json').respond(200)
     @http.expectGET(templateRequest).respond(200)
     @http.flush()
 
@@ -34,10 +35,10 @@ describe 'SideNavCtrl', ->
       it 'has a current user', ->
         expect(@scope.currentUser).toBeDefined
 
-      it 'knows about the current user', ->
-        expect(@scope.currentUser.name).toBe("Username")
-        expect(@scope.currentUser.email).toBe("username@example.com")
-        expect(@scope.currentUser.avatar).toBe("avatars:svg-1")
+      it 'knows about the default user', ->
+        expect(@scope.defaultUser.username).toBe("Username")
+        expect(@scope.defaultUser.email).toBe("username@example.com")
+        expect(@scope.defaultUser.avatar).toBe("avatars:svg-1")
 
     describe 'user account action buttons', ->
       it 'knows about the user action buttons', ->

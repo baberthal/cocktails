@@ -1,3 +1,3 @@
-class Ingredient < ActiveRecord::Base
+class Cocktail < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 end

@@ -3,7 +3,7 @@
 describe 'CocktailsCtrl', ->
   beforeEach ->
     @controller('CocktailsCtrl', { $scope: @scope })
-    @CocktailRecipe = @model('CocktailRecipe')
+    @CocktailRecipe = @model('Cocktail')
     @cocktailRecipes = [
       {
         id: 2
@@ -16,7 +16,7 @@ describe 'CocktailsCtrl', ->
     ]
     templateRequest = new RegExp("\/templates\/*")
     @http.expectGET(templateRequest).respond(200)
-    @http.whenGET('/cocktail_recipes').respond(200, @cocktailRecipes)
+    @http.whenGET('/cocktails').respond(200, @cocktailRecipes)
     @http.flush()
 
   describe 'controller initialization', ->

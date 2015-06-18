@@ -20,5 +20,6 @@
 //= require angular-ui-router
 //= require angularjs-rails-resource
 //= require angularjs-rails-resource/extensions/snapshots
+//= require angular-devise
 //= require app
 //= require_tree .

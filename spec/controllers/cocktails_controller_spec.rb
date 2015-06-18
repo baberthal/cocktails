@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe CocktailRecipesController, type: :controller do
+RSpec.describe CocktailsController, type: :controller do
   render_views
   describe "#index" do
     before do
-      @c1 = create(:cocktail_recipe, name: "Margarita")
-      @c2 = create(:cocktail_recipe, name: "Margarita (Cadillac)")
-      @c3 = create(:cocktail_recipe, name: "Manhattan")
-      @c4 = create(:cocktail_recipe, name: "Singapore Sling")
+      @c1 = create(:cocktail, name: "Margarita")
+      @c2 = create(:cocktail, name: "Margarita (Cadillac)")
+      @c3 = create(:cocktail, name: "Manhattan")
+      @c4 = create(:cocktail, name: "Singapore Sling")
 
       xhr :get, :index, format: :json, keywords: keywords
       end

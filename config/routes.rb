@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'static_pages#index'
   get "/templates/:name", to: "templates#serve", constraints: { name: /[\/\w\.]+/ }
 
-  resources :cocktail_recipes, only: [:index]
+  resources :cocktails, only: [:index]
+  resources :ingredients, only: [:index]
 end

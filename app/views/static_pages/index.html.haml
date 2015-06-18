@@ -4,7 +4,7 @@
       %md-icon menu
     %h2
       %span
-        Cocktails!
+        %a{"ui-sref" => 'home'} Cocktails!
     %span{:flex => ""}
     %md-button.md-icon-button{"aria-label" => "Search", "ui-sref" => 'search'}
       %md-icon search
@@ -12,25 +12,45 @@
 .main{:layout => "row", :flex => "", "ng-controller" => "SideNavCtrl"}
   %md-sidenav.md-sidenav-left.md-whiteframe-z2{"md-component-id" => "left", "md-is-locked-open" => "$mdMedia('gt-md')", :layout => "column"}
     %md-toolbar.md-hue-1.md-medium-tall.md-whiteframe-z1{:layout => "row"}
+
       %md-list
-        %md-list-item.md-2-line{:style => "vertical-align: middle;"}
+        %md-list-item.md-2-line{:style => "vertical-align: middle;", "ng-hide" => "signedIn()"}
           = inline_svg "avatar-1.svg", class: 'md-avatar'
           .md-list-item-text
-            %h3 {{ currentUser.name }}
+            %h3 {{ defaultUser.username }}
+            %h4 {{ defaultUser.email }}
+
+        %md-list-item.md-2-line{:style => "vertical-align: middle;", "ng-show" => "signedIn()"}
+          = inline_svg "avatar-1.svg", class: 'md-avatar'
+          .md-list-item-text
+            %h3 {{ currentUser.username }}
             %h4 {{ currentUser.email }}
+
       %md-button.md-icon-button{"aria-label" => "close menu", "ng-click" => "closeLeft()"}
         %md-icon{"hide-gt-md" => ""} close
+
     %md-list
       %md-list-item{"ng-repeat" => "it in menu"}
-        %md-button.block-button.left-align{"ng-class" => "{'selected' : it === nav.selected }", "ng-click" => "it.action", :flex => ""}
+        %md-button.block-button.left-align{"ng-class" => "{'selected' : it === nav.selected }", "ng-click" => "goTo(it.action)", :flex => ""}
           %md-icon {{ it.icon }}
           {{ it.name }}
     %md-divider
+
     %md-list
-      %md-list-item{"ng-repeat" => "it in userMenu"}
+      %md-list-item{"ng-repeat" => "it in userMenu", "ng-show" => "signedIn()"}
         %md-button.block-button.left-align{"ng-click" => "it.action", :flex => "", "class" => "{{it.class}}"}
           %md-icon {{ it.icon }}
           {{ it.name }}
+
+      %md-list-item{ "ng-hide" => "signedIn()" }
+        %md-button.block-button.left-align{"ng-click" => "register()", :flex => "", "class" => "md-primary"}
+          %md-icon person
+          Create an Account
+
+      %md-list-item{ "ng-hide" => "signedIn()" }
+        %md-button.block-button.left-align{"ng-click" => "logIn()", :flex => "", "class" => "md-primary"}
+          %md-icon account_circle
+          Log In
 
   %md-content{:layout => "column", :flex => "", "layout-padding" => ""}
     %ui-view

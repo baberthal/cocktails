@@ -1,0 +1,16 @@
+%div{:layout => "column", "layout-align" => "center"}
+  %h1.text-center.md-display-3 Browse Ingredients
+
+  %md-content.md-whiteframe-z1
+    %md-toolbar.md-hue-1
+      .md-toolbar-tools
+        %h2 Ingredients List
+    %md-list{"layout-padding" => ""}
+      %md-list-item{"ng-repeat" => "it in ingredients", "ng-click" => "goToIngredient(it.id)"}
+        %p {{ it.name }}
+        %md-button.md-icon-button
+          %md-icon more_vert
+        %md-divider{"ng-if" => "!$last"}
+
+
+

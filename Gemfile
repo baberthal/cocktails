@@ -16,6 +16,7 @@ gem 'puma'
 gem 'haml'
 gem 'haml-rails'
 gem 'inline_svg'
+gem 'devise'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -41,6 +42,7 @@ group :development, :test do
   gem 'guard-livereload', require: false
   gem 'guard-bundler', require: false
   gem 'guard-teaspoon', github: 'modeset/guard-teaspoon'
+  gem 'guard-zeus'
   gem 'guard-coffeescript'
   gem 'ruby_gntp'
   gem 'capybara'

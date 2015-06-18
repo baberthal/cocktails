@@ -2,6 +2,8 @@ angular.module("cocktails", [
   'ngMaterial',
   'rails',
   'ui.router',
+  'Devise',
+  'ngMessages',
   'controllers',
   'services'
 ])
@@ -10,12 +12,15 @@ angular.module("cocktails", [
   '$httpProvider',
   '$mdIconProvider',
   ($httpProvider, $mdIconProvider) ->
-    $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
+    $httpProvider
+      .defaults.headers
+        .common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
 
     $mdIconProvider.defaultFontSet("material-icons")
                    .iconSet('avatars', "<%= asset_url('avatars.svg') %>")
                    .icon('logout', "<%= asset_url('logout.svg') %>")
                    .icon('view_account', "<%= asset_url('person.svg') %>")
+
 ])
 
 controllers = angular.module('controllers', [])

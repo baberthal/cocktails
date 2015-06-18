@@ -1,0 +1,32 @@
+%md-dialog{"aria-label" => "Register"}
+  %form{:name => "userRegisterForm", "ng-submit" => "register()"}
+    %md-toolbar
+      .md-toolbar-tools
+        %h2 Register
+        %span{:flex => ""}
+        %md-button.md-icon-button{"ng-click" => "cancel()"}
+          %md-icon{"aria-label" => "cancel"} close
+
+    %md-dialog-content
+      %md-input-container
+        %label Username
+        %input{:required => "", :name => "username", "ng-model" => "user.username"}
+        %div{"ng-messages" => "userRegisterForm.username.$error", "ng-show" => "userRegisterForm.username.$dirty"}
+          %div{"ng-message" => "required"} This field is required
+
+      %md-input-container
+        %label Email
+        %input{:required => "", :type => "email", :name => "email", "ng-model" => "user.email"}
+        %div{"ng-messages" => "userRegisterForm.email.$error", "ng-show" => "userRegisterForm.email.$dirty"}
+          %div{"ng-message" => "required"} This field is required
+
+      %md-input-container
+        %label Password
+        %input{:required => "", :type => "password", :name => "password", "ng-model" => "user.password"}
+        %div{"ng-messages" => "userRegisterForm.password.$error", "ng-show" => "userRegisterForm.password.$dirty"}
+          %div{"ng-message" => "required"} Can't log in without a password...
+
+    .md-actions
+      %md-button{:type => "submit"} Register
+
+

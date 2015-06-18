@@ -3,7 +3,10 @@ angular.module('controllers')
   '$state',
   '$scope',
   '$mdSidenav',
-  ($state,$scope,$mdSidenav) ->
+  'Auth',
+  '$http',
+  '$mdDialog',
+  ($state,$scope,$mdSidenav,Auth,$http,$mdDialog) ->
     $scope.menu = [
         name: "Search"
         action: 'search'
@@ -26,10 +29,34 @@ angular.module('controllers')
         icon: 'local_drink'
     ]
 
-    $scope.currentUser =
-      name: "Username"
+    $scope.goTo = (state) ->
+      $state.go(state)
+
+
+    $scope.signedIn = Auth.isAuthenticated
+    $scope.logout = Auth.logout
+
+    $scope.defaultUser =
+      username: "Username"
       avatar: "avatars:svg-1"
       email: "username@example.com"
+
+    Auth.currentUser().then (user) ->
+      $scope.currentUser = user
+
+    $scope.$on('devise:new-registration', (e, user) ->
+      $scope.currentUser = user
+      $scope.alert = "Welcome to Cocktails!"
+    )
+
+    $scope.$on('devise:login', (e, user) ->
+      $scope.currentUser = user
+      $scope.alert = "You successfully logged in"
+    )
+
+    $scope.$on('devise:logout', (e, user) ->
+      $scope.currentUser = {}
+    )
 
     $scope.userMenu = [
         name: 'My Account'
@@ -42,5 +69,14 @@ angular.module('controllers')
         class: 'md-warn'
         icon: 'exit_to_app'
     ]
+
+    $scope.register = (ev) ->
+      $mdDialog.show(
+        controller: 'AuthCtrl'
+        templateUrl: '/templates/register.tmpl.html'
+        parent: angular.element(document.body)
+        targetEvent: ev
+      )
+
 
 ]

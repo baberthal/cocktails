@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :cocktail_recipe do
+  factory :cocktail do
     name "Margarita"
   end
 end

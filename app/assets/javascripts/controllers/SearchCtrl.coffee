@@ -4,14 +4,12 @@ angular.module('controllers')
   '$state',
   '$location',
   '$stateParams',
-  'CocktailRecipe',
-  ($scope, $state, $location, $stateParams, CocktailRecipe) ->
+  'Cocktail',
+  ($scope, $state, $location, $stateParams, Cocktail) ->
     $scope.search = (keywords) ->
       $location.path("/search").search('keywords', keywords)
 
-    console.log $stateParams
-
     if $stateParams.keywords
-      CocktailRecipe.query(keywords: $stateParams.keywords).then (results) ->
+      Cocktail.query(keywords: $stateParams.keywords).then (results) ->
         $scope.searchResults = results
 ]

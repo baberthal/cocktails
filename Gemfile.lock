@@ -53,6 +53,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.8)
     arel (6.0.0)
+    bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
@@ -80,6 +81,13 @@ GEM
     columnize (0.9.0)
     database_cleaner (1.4.1)
     debug_inspector (0.0.2)
+    devise (3.5.1)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      responders
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
     diff-lcs (1.2.5)
     docile (1.1.5)
     em-websocket (0.5.1)
@@ -123,6 +131,10 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
+    guard-zeus (2.0.1)
+      guard (~> 2.0)
+      guard-compat (~> 1.1)
+      zeus (~> 0)
     haml (4.0.6)
       tilt
     haml-rails (0.9.0)
@@ -173,6 +185,7 @@ GEM
     notiffany (0.0.6)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    orm_adapter (0.5.0)
     pg (0.18.2)
     pg_array_parser (0.0.9)
     phantomjs (1.9.8.0)
@@ -228,6 +241,8 @@ GEM
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     rdoc (4.2.0)
+    responders (2.1.0)
+      railties (>= 4.2.0, < 5)
     rspec (3.3.0)
       rspec-core (~> 3.3.0)
       rspec-expectations (~> 3.3.0)
@@ -304,6 +319,8 @@ GEM
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    warden (1.2.3)
+      rack (>= 1.0)
     web-console (2.1.2)
       activemodel (>= 4.0)
       binding_of_caller (>= 0.7.2)
@@ -315,6 +332,8 @@ GEM
     websocket-extensions (0.1.2)
     xpath (2.0.0)
       nokogiri (~> 1.3)
+    zeus (0.15.4)
+      method_source (>= 0.6.7)
 
 PLATFORMS
   ruby
@@ -324,12 +343,14 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.1.0)
   database_cleaner
+  devise
   factory_girl_rails
   guard-bundler
   guard-coffeescript
   guard-livereload
   guard-rspec
   guard-teaspoon!
+  guard-zeus
   haml
   haml-rails
   inline_svg

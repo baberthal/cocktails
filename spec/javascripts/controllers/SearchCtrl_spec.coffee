@@ -2,10 +2,10 @@
 
 describe 'SearchCtrl', ->
   templateRequest = new RegExp("\/templates\/*")
-  searchRequest = new RegExp("\/cocktail_recipes\/*")
+  searchRequest = new RegExp("\/cocktails\/*")
   beforeEach ->
     @controller('SearchCtrl', { $scope: @scope })
-    @CocktailRecipe = @model('CocktailRecipe')
+    @CocktailRecipe = @model('Cocktail')
     @searchResults = [
       {
         id: 2
