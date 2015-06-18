@@ -49,6 +49,12 @@
         1,
         null
       ],
+      "/Users/morgan/projects/cocktails/app/models/bar.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
       "/Users/morgan/projects/cocktails/app/models/cocktail.rb": [
         1,
         1,
@@ -56,6 +62,7 @@
         null
       ],
       "/Users/morgan/projects/cocktails/app/models/ingredient.rb": [
+        1,
         1,
         1,
         1,
@@ -67,9 +74,12 @@
         null,
         1,
         null,
+        null,
+        1,
+        1,
         null
       ]
     },
-    "timestamp": 1434656890
+    "timestamp": 1434658907
   }
 }
