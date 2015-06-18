@@ -24,7 +24,7 @@
         %label Password
         %input{:required => "", :type => "password", :name => "password", "ng-model" => "user.password"}
         %div{"ng-messages" => "userRegisterForm.password.$error", "ng-show" => "userRegisterForm.password.$dirty"}
-          %div{"ng-message" => "required"} Can't log in without a password...
+          %div{"ng-message" => "required"} Can't login without a password...
 
     .md-actions
       %md-button{:type => "submit"} Register

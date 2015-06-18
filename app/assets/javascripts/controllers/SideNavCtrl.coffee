@@ -58,18 +58,6 @@ angular.module('controllers')
       $scope.currentUser = {}
     )
 
-    $scope.userMenu = [
-        name: 'My Account'
-        action: 'currentUser.show'
-        class: 'md-primary'
-        icon: 'person'
-      ,
-        name: 'Log Out'
-        action: 'logOut()'
-        class: 'md-warn'
-        icon: 'exit_to_app'
-    ]
-
     $scope.register = (ev) ->
       $mdDialog.show(
         controller: 'AuthCtrl'
@@ -78,5 +66,12 @@ angular.module('controllers')
         targetEvent: ev
       )
 
+    $scope.login = (ev) ->
+      $mdDialog.show(
+        controller: 'AuthCtrl'
+        templateUrl: '/templates/login.tmpl.html'
+        parent: angular.element(document.body)
+        targetEvent: ev
+      )
 
 ]

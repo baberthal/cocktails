@@ -29,6 +29,11 @@
       %md-button.md-icon-button{"aria-label" => "close menu", "ng-click" => "closeLeft()"}
         %md-icon{"hide-gt-md" => ""} close
 
+    %div{"ng-if" => 'alert'}
+      %br
+      %b.md-padding{:layout => "row", "layout-align" => "center center"}
+        {{ alert }}
+
     %md-list
       %md-list-item{"ng-repeat" => "it in menu"}
         %md-button.block-button.left-align{"ng-class" => "{'selected' : it === nav.selected }", "ng-click" => "goTo(it.action)", :flex => ""}
@@ -37,10 +42,15 @@
     %md-divider
 
     %md-list
-      %md-list-item{"ng-repeat" => "it in userMenu", "ng-show" => "signedIn()"}
-        %md-button.block-button.left-align{"ng-click" => "it.action", :flex => "", "class" => "{{it.class}}"}
-          %md-icon {{ it.icon }}
-          {{ it.name }}
+      %md-list-item{"ng-show" => "signedIn()"}
+        %md-button.block-button.left-align{"ng-click" => "goTo(myAccount)", :flex => "", "class" => "md-primary"}
+          %md-icon person
+          My Account
+
+      %md-list-item{"ng-show" => "signedIn()"}
+        %md-button.block-button.left-align{"ng-click" => "logout()", :flex => "", "class" => "md-warn"}
+          %md-icon exit_to_app
+          Log Out
 
       %md-list-item{ "ng-hide" => "signedIn()" }
         %md-button.block-button.left-align{"ng-click" => "register()", :flex => "", "class" => "md-primary"}
@@ -48,7 +58,7 @@
           Create an Account
 
       %md-list-item{ "ng-hide" => "signedIn()" }
-        %md-button.block-button.left-align{"ng-click" => "logIn()", :flex => "", "class" => "md-primary"}
+        %md-button.block-button.left-align{"ng-click" => "login()", :flex => "", "class" => "md-primary"}
           %md-icon account_circle
           Log In
 

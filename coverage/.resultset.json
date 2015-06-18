@@ -17,10 +17,10 @@
       "/Users/morgan/projects/cocktails/app/controllers/cocktails_controller.rb": [
         1,
         1,
-        8,
-        5,
+        0,
+        0,
         null,
-        3,
+        0,
         null,
         null,
         null
@@ -28,7 +28,7 @@
       "/Users/morgan/projects/cocktails/app/controllers/ingredients_controller.rb": [
         1,
         1,
-        3,
+        0,
         null,
         null
       ],
@@ -52,9 +52,11 @@
       "/Users/morgan/projects/cocktails/app/models/cocktail.rb": [
         1,
         1,
+        1,
         null
       ],
       "/Users/morgan/projects/cocktails/app/models/ingredient.rb": [
+        1,
         1,
         1,
         null
@@ -68,6 +70,6 @@
         null
       ]
     },
-    "timestamp": 1434650112
+    "timestamp": 1434656890
   }
 }

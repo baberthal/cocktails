@@ -40,17 +40,3 @@ describe 'SideNavCtrl', ->
         expect(@scope.defaultUser.email).toBe("username@example.com")
         expect(@scope.defaultUser.avatar).toBe("avatars:svg-1")
 
-    describe 'user account action buttons', ->
-      it 'knows about the user action buttons', ->
-        expect(@scope.userMenu).toBeDefined
-
-      it 'has the right user action buttons', ->
-        expected = ['My Account', 'Log Out']
-        userActions = extractNames(@scope.userMenu)
-        expect(userActions).toEqualData(expected)
-
-      it 'has the right actions associated with those buttons', ->
-        expected = ['currentUser.show', 'logOut()']
-        actual = extractActions(@scope.userMenu)
-        expect(actual).toEqual(expected)
-
