@@ -1,8 +1,8 @@
 angular.module('services')
-.factory "Cocktail", [
+.factory 'Bar', [
   'railsResourceFactory',
   (railsResourceFactory) ->
     resource = railsResourceFactory
-      url: '/cocktails'
-      name: 'cocktail'
+      url: '/bars'
+      name: 'bar'
 ]

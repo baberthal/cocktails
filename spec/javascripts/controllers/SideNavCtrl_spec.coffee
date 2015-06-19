@@ -5,6 +5,8 @@ extractActions = (arr) -> a.action for a in arr
 describe 'SideNavCtrl', ->
   beforeEach ->
     @controller('SideNavCtrl', { $scope: @scope })
+    templateRequest = new RegExp("\/templates\/*")
+    @http.expectGET(templateRequest).respond(200)
     # @http.expectPOST('/users/sign_in.json').respond(200)
     @http.flush()
 

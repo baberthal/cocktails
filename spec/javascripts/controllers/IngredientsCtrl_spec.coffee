@@ -14,8 +14,8 @@ describe 'IngredientsCtrl', ->
         name: 'Whiskey'
       }
     ]
-    # templateRequest = new RegExp("\/templates\/*")
-    # @http.expectGET(templateRequest).respond(200)
+    templateRequest = new RegExp("\/templates\/*")
+    @http.expectGET(templateRequest).respond(200)
     @http.whenGET('/ingredients').respond(@ingredients)
     @http.flush()
 

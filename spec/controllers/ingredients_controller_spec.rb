@@ -23,7 +23,7 @@ RSpec.describe IngredientsController, type: :controller do
     end
 
     it 'should contain the right ingredients' do
-      expect(results.map(&extract_name)).to eq ['Whiskey', 'Vermouth', 'Lime Juice', 'Gin']
+      expect(results.map(&extract_name)).to eq ['Gin', 'Lime Juice', 'Vermouth', 'Whiskey']
     end
 
   end

@@ -5,4 +5,5 @@ Rails.application.routes.draw do
 
   resources :cocktails, only: [:index]
   resources :ingredients, only: [:index]
+  resources :bars, only: [:index, :show, :create]
 end

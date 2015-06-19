@@ -4,7 +4,8 @@ angular.module('controllers')
   '$state',
   'Auth',
   '$mdDialog',
-  ($scope, $state, Auth, $mdDialog) ->
+  '$mdToast',
+  ($scope, $state, Auth, $mdDialog, $mdToast) ->
     $scope.login = ->
       Auth.login($scope.user).then ->
         $state.go('home')
@@ -15,5 +16,8 @@ angular.module('controllers')
 
     $scope.cancel = ->
       $mdDialog.cancel()
+
+    $scope.signedIn = Auth.isAuthenticated
+    $scope.logout = Auth.logout
 
 ]

@@ -8,8 +8,6 @@ describe 'AuthCtrl', ->
 
   describe 'controller initialization', ->
     describe 'logging in', ->
-      @scope.login()
-      expect(@Auth).toHaveBeenCalled()
 
 
 

@@ -10,9 +10,10 @@ feature 'What can I make?', js: true do
 
   scenario 'Adding items to my bar' do
     visit '/#/what_can_i_make'
-    within '#myBar' do
-      click_on 'Add Ingredient'
-      select 'Whiskey'
+    click_on 'add'
+    click_on 'Whiskey'
+    within "#myBar" do
+      expect(page).to have_content "Whiskey"
     end
   end
 end

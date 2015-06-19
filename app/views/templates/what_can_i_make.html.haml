@@ -1,0 +1,18 @@
+%h1.text-center.md-display-3 What Can I Make?
+
+%div{"layout-margin" => "", :layout => "row"}
+  %div{:layout => "column", :flex => "45"}
+    %md-content#myBar.md-whiteframe-z1
+      %md-toolbar.md-hue-1{:layout => "row"}
+        .md-toolbar-tools
+          %span My Bar
+      %md-list{"layout-padding" => ""}
+        %md-list-item{"ng-repeat" => "bottle in userBar"}
+          %p {{ bottle.name }}
+          %md-divider{"ng-if" => "!$last"}
+    %md-menu
+      %md-button#add.md-fab{"aria-label" => "add an ingredient to my bar", "ng-click" => "$mdOpenMenu()"}
+        %md-icon{"md-menu-align-target" => ""} add
+      %md-menu-content
+        %md-menu-item{"ng-repeat" => "it in ingredients"}
+          %md-button{"ng-click" => "addIngredient(it)"} {{ it.name }}
