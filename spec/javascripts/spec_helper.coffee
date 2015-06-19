@@ -28,6 +28,10 @@ beforeEach inject (_$httpBackend_, $rootScope, $location, $controller, $injector
   @model = (name) =>
     @injector.get(name)
 
+beforeEach ->
+  templateRequest = new RegExp("\/templates\/*")
+  @http.expectGET(templateRequest).respond(200)
+
 afterEach ->
   @http.verifyNoOutstandingExpectation()
   @http.verifyNoOutstandingRequest()

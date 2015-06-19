@@ -37,8 +37,9 @@ module Cocktails
       config.assets.paths << bower_path
     end
 
-    config.assets.precompile << %r(bootstrap-sass/assets/fonts/bootstrap/[\w-]+\.(?:eot|svg|ttf|woff2?)$)
-    ::Sass::Script::Value::Number.precision = [8, ::Sass::Script::Value::Number.precision].max
+    config.to_prepare do
+      DeviseController.respond_to :html, :json
+    end
 
     config.generators do |g|
       g.template_engine :jbuilder

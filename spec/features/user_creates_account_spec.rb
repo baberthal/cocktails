@@ -26,7 +26,7 @@ feature 'User account features', js: true do
       click_on 'Log In'
     end
 
-    expect(page).to have_content 'You successfully logged in'
+    expect(page).to have_content 'Login Successful!'
     expect(page).to have_content 'foobar'
   end
 

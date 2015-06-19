@@ -9,12 +9,8 @@ angular.module("cocktails", [
 ])
 
 .config([
-  '$httpProvider',
   '$mdIconProvider',
-  ($httpProvider, $mdIconProvider) ->
-    $httpProvider
-      .defaults.headers
-        .common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
+  ($mdIconProvider) ->
 
     $mdIconProvider.defaultFontSet("material-icons")
                    .iconSet('avatars', "<%= asset_url('avatars.svg') %>")

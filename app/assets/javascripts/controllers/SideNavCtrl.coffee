@@ -4,9 +4,9 @@ angular.module('controllers')
   '$scope',
   '$mdSidenav',
   'Auth',
-  '$http',
   '$mdDialog',
-  ($state,$scope,$mdSidenav,Auth,$http,$mdDialog) ->
+  '$mdToast',
+  ($state,$scope,$mdSidenav,Auth,$mdDialog,$mdToast) ->
     $scope.menu = [
         name: "Search"
         action: 'search'
@@ -32,7 +32,6 @@ angular.module('controllers')
     $scope.goTo = (state) ->
       $state.go(state)
 
-
     $scope.signedIn = Auth.isAuthenticated
     $scope.logout = Auth.logout
 
@@ -41,21 +40,31 @@ angular.module('controllers')
       avatar: "avatars:svg-1"
       email: "username@example.com"
 
-    Auth.currentUser().then (user) ->
-      $scope.currentUser = user
-
     $scope.$on('devise:new-registration', (e, user) ->
       $scope.currentUser = user
-      $scope.alert = "Welcome to Cocktails!"
+      $mdToast.show(
+        $mdToast.simple()
+          .content('Welcome to Cocktails!')
+          .position('top right')
+      )
     )
 
     $scope.$on('devise:login', (e, user) ->
       $scope.currentUser = user
-      $scope.alert = "You successfully logged in"
+      $mdToast.show(
+        $mdToast.simple()
+          .content("Login Successful! Welcome back, #{user.username}")
+          .position('top right')
+      )
     )
 
     $scope.$on('devise:logout', (e, user) ->
       $scope.currentUser = {}
+      $mdToast.show(
+        $mdToast.simple()
+          .content("Goodbye #{user.username}! Hope to see you soon!")
+          .position('top right')
+      )
     )
 
     $scope.register = (ev) ->

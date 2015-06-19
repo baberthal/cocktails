@@ -17,6 +17,7 @@ gem 'haml'
 gem 'haml-rails'
 gem 'inline_svg'
 gem 'devise'
+gem 'angular_rails_csrf'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

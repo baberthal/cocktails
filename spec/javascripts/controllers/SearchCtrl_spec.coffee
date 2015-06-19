@@ -16,7 +16,6 @@ describe 'SearchCtrl', ->
         name: 'Margarita'
       }
     ]
-    @http.expectGET(templateRequest).respond(200)
     @http.whenGET(searchRequest).respond(200, @searchResults)
     @http.flush()
 
