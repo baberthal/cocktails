@@ -1,10 +1,7 @@
 %h1.text-center.md-display-3 Recently Added Recipes
 
 %div{:layout => "column", "layout-align" => "center"}
-  %md-card{:flex => "75", "ng-repeat" => "cocktailRecipe in cocktailRecipes"}
-    %md-card-content
-      %h2.md-display-1 {{ cocktailRecipe.name }}
-      %p.md-body-1 {{ cocktailRecipe.description }}
-    .md-actions{:layout => "row", "layout-align" => "end center"}
-      %md-button.md-primary Edit
-      %md-button.md-warn Delete
+  %recipe-card{"ng-repeat" => "cocktailRecipe in cocktailRecipes"}
+
+%md-button#add-a-recipe.md-fab{"aria-label" => "Add a recipe", "ng-click" => "addRecipe()"}
+  %md-icon add

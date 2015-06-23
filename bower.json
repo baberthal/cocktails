@@ -19,7 +19,6 @@
     "angular-ui-router": "~0.2.15",
     "angular-messages": "~1.4.0",
     "angularjs-rails-resource": "~2.0.0",
-    "bootstrap-sass": "~3.3.4",
     "angular-route": "~1.4.0",
     "angular-mocks": "~1.4.0",
     "angular-material": "~0.10.0",
