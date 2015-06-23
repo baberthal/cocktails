@@ -6,11 +6,11 @@ RSpec.describe BarsController, type: :controller do
 
   describe "#index" do
     before do
-      @i1 = create(:ingredient)
-      create(:ingredient, name: "Lemons")
-      create(:ingredient, name: "Sour Mix")
-      create(:ingredient, name: "Egg White")
-      Bar.create(user: @user, ingredient: @i1)
+      @whiskey = create(:ingredient)
+      @lemons = create(:ingredient, name: "Lemons")
+      @sour_mix = create(:ingredient, name: "Sour Mix")
+      @egg_white = create(:ingredient, name: "Egg White")
+      Bar.create(user: @user, ingredient: @whiskey)
 
       xhr :get, :index, format: :json
     end
@@ -28,6 +28,25 @@ RSpec.describe BarsController, type: :controller do
     it 'should contain "Whiskey"' do
       ingredient = results.map(&extract_ingredients)
       expect(ingredient.map(&extract_name)).to include "Whiskey"
+    end
+
+    context 'when there is more than one user' do
+      before do
+        @user_two = create(:user)
+        Bar.create(user: @user, ingredient: @lemons)
+        Bar.create(user: @user_two, ingredient: @sour_mix)
+
+        xhr :get, :index, format: :json
+      end
+
+      subject(:results) { JSON.parse(response.body) }
+
+      it 'should only return bars belonging to the current user' do
+        ingredients = results.map(&extract_ingredients)
+        expect(ingredients.map(&extract_name)).to_not include "Sour Mix"
+        expect(ingredients.map(&extract_name)).to include "Lemons"
+      end
+
     end
   end
 
@@ -48,7 +67,6 @@ RSpec.describe BarsController, type: :controller do
       expect(Bar.last.user_id).to eq @user.id
       expect(Bar.last.ingredient_id).to eq @i1.id
       expect(Bar.last.ingredient.name).to eq "Whiskey"
-
     end
 
   end

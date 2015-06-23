@@ -3,6 +3,7 @@ angular.module('controllers')
   '$scope',
   'Auth',
   'Ingredient',
+  'Bar',
   ($scope, Auth, Ingredient) ->
     $scope.userBar = []
 
@@ -14,4 +15,10 @@ angular.module('controllers')
 
     $scope.addIngredient = (ingredient) ->
       $scope.userBar.push(ingredient)
+
+    $scope.saveBar = (bar) ->
+      if $scope.currentUser
+        barIds = b.id for b in bar
+        Bar.new(bar)
+
 ]

@@ -1,8 +1,7 @@
 angular.module('services')
 .factory 'Bar', [
-  'railsResourceFactory',
-  (railsResourceFactory) ->
-    resource = railsResourceFactory
-      url: '/bars'
-      name: 'bar'
+  'RailsResource',
+  (RailsResource) ->
+    class Bar extends RailsResource
+      @configure url: '/bars', name: 'bar'
 ]

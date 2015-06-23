@@ -35,3 +35,4 @@ describe 'MyBarCtrl', ->
         expect(@scope.userBar).toEqualData([@ingredients[1]])
 
 
+
