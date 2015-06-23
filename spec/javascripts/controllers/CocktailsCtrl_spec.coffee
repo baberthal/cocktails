@@ -3,7 +3,6 @@
 describe 'CocktailsCtrl', ->
   beforeEach ->
     @controller('CocktailsCtrl', { $scope: @scope })
-    @CocktailRecipe = @model('Cocktail')
     @cocktailRecipes = [
       {
         id: 2

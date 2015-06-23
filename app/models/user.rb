@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
 
   has_many :bars
   has_many :ingredients, through: :bars
+  has_many :cocktails
 end
