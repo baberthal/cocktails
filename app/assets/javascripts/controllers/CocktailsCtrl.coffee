@@ -13,6 +13,10 @@ angular.module('controllers')
           templateUrl: '/templates/addRecipe.tmpl.html'
           parent: angular.element(document.body)
           targetEvent: ev
-        )
+        ).then ->
+          Cocktail.query().then (results) ->
+            $scope.cocktailRecipes = results
+        , ->
+          $scope.alert = "You cancelled the edit."
 
   ])

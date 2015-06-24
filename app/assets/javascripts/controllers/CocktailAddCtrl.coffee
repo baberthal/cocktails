@@ -4,7 +4,7 @@ angular.module('controllers').controller "CocktailAddCtrl", [
   'Ingredient',
   'Cocktail',
   '$mdDialog',
-  ($scope, $location, Ingredient, Cocktail, $mdDialog) ->
+  ($scope, $state, Ingredient, Cocktail, $mdDialog) ->
     self = this
 
     $scope.cancel = ->
@@ -24,7 +24,6 @@ angular.module('controllers').controller "CocktailAddCtrl", [
         ing._lowertype = ing.ingredientType.toLowerCase()
         ing
       $scope.ingredients = ingredients
-      console.log $scope.ingredients
 
     querySearch = (query) ->
       results = if query
@@ -43,6 +42,5 @@ angular.module('controllers').controller "CocktailAddCtrl", [
     self.searchText = null
     self.querySearch = querySearch
     self.selectedIngredients = []
-    return
 
 ]

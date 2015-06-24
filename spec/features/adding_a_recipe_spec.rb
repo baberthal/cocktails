@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'adding a recipe', js: true, focus: true do
+feature 'adding a recipe', js: true do
   before do
     create(:ingredient, name: "Tequila")
     create(:ingredient, name: "Cointreau", ingredient_type: "Liqueur")
@@ -29,6 +29,6 @@ feature 'adding a recipe', js: true, focus: true do
     end
 
     expect(page).to have_content 'Margarita'
-    expect(page).to have_content 'Added by foobar1'
+    expect(page).to have_content 'Created by foobar1'
   end
 end
