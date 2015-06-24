@@ -16,7 +16,16 @@ angular.module('controllers')
         ).then ->
           Cocktail.query().then (results) ->
             $scope.cocktailRecipes = results
-        , ->
-          $scope.alert = "You cancelled the edit."
+
+      $scope.editRecipe = (ev) ->
+        $mdDialog.show(
+          controller: 'CocktailEditCtrl'
+          templateUrl: '/templates/editRecipe.tmpl.html'
+          parent: angular.element(document.body)
+          targetEvent: ev
+        ).then ->
+          Cocktail.query().then (results) ->
+            $scope.cocktailRecipes = results
+
 
   ])

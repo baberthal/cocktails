@@ -45,5 +45,9 @@ describe 'CocktailAddCtrl', ->
           _lowertype: 'garnish'
         expect(@controller.querySearch('salt')).toEqualData(expected)
 
+    describe '$mdDialog', ->
+      it 'knows how to close the dialog', ->
+        expect(@scope.cancel).toBeDefined()
+
 
 

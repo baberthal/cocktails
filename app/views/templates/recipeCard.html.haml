@@ -6,5 +6,5 @@
     %p.md-caption.italic{"ng-show" => "cocktailRecipe.user"} Created by {{ cocktailRecipe.user }} on {{ cocktailRecipe.createdAt }}
     %p.md-caption.italic{"ng-hide" => "cocktailRecipe.user"} Created by Admin on {{ cocktailRecipe.createdAt }}
     %span{:flex => ""}
-    %md-button.md-primary Edit
+    %md-button.md-primary{"ng-click" => "editRecipe(cocktailRecipe)"} Edit
     %md-button.md-warn Delete
