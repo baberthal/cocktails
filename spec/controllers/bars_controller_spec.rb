@@ -26,8 +26,7 @@ RSpec.describe BarsController, type: :controller do
     end
 
     it 'should contain "Whiskey"' do
-      ingredient = results.map(&extract_ingredients)
-      expect(ingredient.map(&extract_name)).to include "Whiskey"
+      expect(results.map(&extract_name)).to include "Whiskey"
     end
 
     context 'when there is more than one user' do
@@ -42,9 +41,8 @@ RSpec.describe BarsController, type: :controller do
       subject(:results) { JSON.parse(response.body) }
 
       it 'should only return bars belonging to the current user' do
-        ingredients = results.map(&extract_ingredients)
-        expect(ingredients.map(&extract_name)).to_not include "Sour Mix"
-        expect(ingredients.map(&extract_name)).to include "Lemons"
+        expect(results.map(&extract_name)).to_not include "Sour Mix"
+        expect(results.map(&extract_name)).to include "Lemons"
       end
 
     end

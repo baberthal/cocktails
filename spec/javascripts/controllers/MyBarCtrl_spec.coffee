@@ -5,7 +5,6 @@ describe 'MyBarCtrl', ->
     @controller('MyBarCtrl', { $scope: @scope })
     @Bar = @model('Bar')
     @Ingredient = @model('Ingredient')
-    @http.expectPOST('/users/sign_in.json').respond(201)
     @ingredients = [
       {
         id: 1
@@ -16,7 +15,9 @@ describe 'MyBarCtrl', ->
         name: 'Whiskey'
       }
     ]
+    @userBar = []
     templateRequest = new RegExp("\/templates\/*")
+    @http.expectGET('/bars').respond(200, @userBar)
     @http.expectGET(templateRequest).respond(200)
     @http.whenGET('/ingredients').respond(@ingredients)
     @http.flush()

@@ -1,12 +1,17 @@
-angular.module('controllers')
-.controller "SideNavCtrl", [
-  '$state',
+angular.module('controllers').controller "MainCtrl", [
   '$scope',
+  '$state',
   '$mdSidenav',
-  'Auth',
   '$mdDialog',
+  'Auth',
   '$mdToast',
-  ($state,$scope,$mdSidenav,Auth,$mdDialog,$mdToast) ->
+  ($scope, $state, $mdSidenav, $mdDialog, Auth, $mdToast) ->
+    Auth.currentUser().then (user) ->
+      $scope.currentUser = user
+
+    $scope.signedIn = Auth.isAuthenticated
+    $scope.logout = Auth.logout
+
     $scope.menu = [
         name: "Search"
         action: 'search'
@@ -32,13 +37,26 @@ angular.module('controllers')
     $scope.goTo = (state) ->
       $state.go(state)
 
-    $scope.signedIn = Auth.isAuthenticated
-    $scope.logout = Auth.logout
-
     $scope.defaultUser =
       username: "Username"
       avatar: "avatars:svg-1"
       email: "username@example.com"
+
+    $scope.register = (ev) ->
+      $mdDialog.show(
+        controller: 'AuthCtrl'
+        templateUrl: '/templates/register.tmpl.html'
+        parent: angular.element(document.body)
+        targetEvent: ev
+      )
+
+    $scope.login = (ev) ->
+      $mdDialog.show(
+        controller: 'AuthCtrl'
+        templateUrl: '/templates/login.tmpl.html'
+        parent: angular.element(document.body)
+        targetEvent: ev
+      )
 
     $scope.$on('devise:new-registration', (e, user) ->
       $scope.currentUser = user
@@ -59,28 +77,12 @@ angular.module('controllers')
     )
 
     $scope.$on('devise:logout', (e, user) ->
-      $scope.currentUser = {}
       $mdToast.show(
         $mdToast.simple()
           .content("Goodbye #{user.username}! Hope to see you soon!")
           .position('top right')
       )
+      $scope.currentUser = {}
     )
-
-    $scope.register = (ev) ->
-      $mdDialog.show(
-        controller: 'AuthCtrl'
-        templateUrl: '/templates/register.tmpl.html'
-        parent: angular.element(document.body)
-        targetEvent: ev
-      )
-
-    $scope.login = (ev) ->
-      $mdDialog.show(
-        controller: 'AuthCtrl'
-        templateUrl: '/templates/login.tmpl.html'
-        parent: angular.element(document.body)
-        targetEvent: ev
-      )
 
 ]

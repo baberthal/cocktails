@@ -1,24 +1,29 @@
 angular.module('controllers')
 .controller 'MyBarCtrl', [
   '$scope',
-  'Auth',
   'Ingredient',
   'Bar',
-  ($scope, Auth, Ingredient) ->
-    $scope.userBar = []
+  ($scope, Ingredient, Bar) ->
 
-    Auth.currentUser().then (user) ->
-      $scope.currentUser = user
+    Bar.query().then (results) ->
+      $scope.userBar = results
+
 
     Ingredient.query().then (results) ->
       $scope.ingredients = results
 
     $scope.addIngredient = (ingredient) ->
       $scope.userBar.push(ingredient)
+      index = $scope.ingredients.indexOf(ingredient)
+      $scope.ingredients.splice(index, 1)
 
     $scope.saveBar = (bar) ->
       if $scope.currentUser
-        barIds = b.id for b in bar
-        Bar.new(bar)
+        for item in $scope.userBar
+          do (item) ->
+            toCreate = new Bar
+            toCreate.userId = $scope.currentUser.id
+            toCreate.ingredient_id = item.id
+            toCreate.save()
 
 ]

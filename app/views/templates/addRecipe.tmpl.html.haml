@@ -1,5 +1,5 @@
 %md-dialog{"aria-label" => "Add a Recipe", :flex => "66"}
-  %form#recipeForm{:name => "recipeAddForm", "ng-submit" => "saveRecipe(cocktail)"}
+  %form#recipeForm{:name => "recipeAddForm"}
     %md-toolbar
       .md-toolbar-tools
         %h2 Add a Recipe
@@ -37,7 +37,8 @@
 
 
     .md-actions
-      %md-button{:type => "submit"} Save
+      %md-button{"ng-click" => "saveRecipe(cocktail)", "ng-hide" => "isSubmitting"} Save
+      %md-progress-circular{"md-mode" => "indeterminate", "ng-show" => "isSubmitting"}
 
 
 

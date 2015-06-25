@@ -7,5 +7,5 @@
     = javascript_include_tag 'application'
     %link{rel: "stylesheet", href: "https://fonts.googleapis.com/icon?family=Material+Icons"}
     = csrf_meta_tags
-  %body{ "ng-app" => "cocktails", :layout => "column" }
+  %body{ "ng-app" => "cocktails", :layout => "column", "ng-controller" => "MainCtrl", "ng-cloak" => "" }
     = yield

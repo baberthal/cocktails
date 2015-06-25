@@ -4,6 +4,11 @@ angular.module('controllers')
     'Cocktail',
     '$mdDialog',
     ($scope,Cocktail,$mdDialog) ->
+
+      queryCocktails = ->
+        Cocktail.query().then (results) ->
+          $scope.cocktailRecipes = results
+
       Cocktail.query().then (results) ->
         $scope.cocktailRecipes = results
 
@@ -14,18 +19,22 @@ angular.module('controllers')
           parent: angular.element(document.body)
           targetEvent: ev
         ).then ->
-          Cocktail.query().then (results) ->
-            $scope.cocktailRecipes = results
+          queryCocktails()
 
-      $scope.editRecipe = (ev) ->
+      $scope.editRecipe = (id) ->
         $mdDialog.show(
           controller: 'CocktailEditCtrl'
           templateUrl: '/templates/editRecipe.tmpl.html'
           parent: angular.element(document.body)
-          targetEvent: ev
+          locals:
+            cocktailId: id
         ).then ->
-          Cocktail.query().then (results) ->
-            $scope.cocktailRecipes = results
+          queryCocktails()
+
+      $scope.delete = (cocktail_id) ->
+        Cocktail.get(cocktail_id).then (cocktail) ->
+          cocktail.remove().then ->
+            queryCocktails()
 
 
   ])

@@ -6,6 +6,9 @@
       %md-toolbar.md-hue-1{:layout => "row"}
         .md-toolbar-tools
           %span My Bar
+          %span{:flex => ""}
+          %md-button.md-icon-button{"ng-click" => "saveBar(userBar)"}
+            %md-icon save
       %md-list{"layout-padding" => ""}
         %md-list-item{"ng-repeat" => "bottle in userBar"}
           %p {{ bottle.name }}

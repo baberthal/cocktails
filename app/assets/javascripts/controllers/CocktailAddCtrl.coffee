@@ -5,6 +5,7 @@ angular.module('controllers').controller "CocktailAddCtrl", [
   'Cocktail',
   '$mdDialog',
   ($scope, $state, Ingredient, Cocktail, $mdDialog) ->
+    $scope.isSubmitting = false
     self = this
 
     $scope.cancel = ->
@@ -13,9 +14,12 @@ angular.module('controllers').controller "CocktailAddCtrl", [
     $scope.cocktail = new Cocktail
 
     $scope.saveRecipe = (recipe) ->
-      recipe.create().then ->
-        $mdDialog.hide()
+      $scope.isSubmitting = true
+      recipe.create().then(->
         $state.go('home')
+      ).finally ->
+        $scope.isSubmitting = false
+        $mdDialog.hide()
 
     Ingredient.query().then (results) ->
       ingredients = results
@@ -42,5 +46,6 @@ angular.module('controllers').controller "CocktailAddCtrl", [
     self.searchText = null
     self.querySearch = querySearch
     self.selectedIngredients = []
+
 
 ]

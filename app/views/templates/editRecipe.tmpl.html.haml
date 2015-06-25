@@ -2,7 +2,7 @@
   %form#recipeForm{:name => "recipeEditForm", "ng-submit" => "saveRecipe(cocktail)"}
     %md-toolbar
       .md-toolbar-tools
-        %h2 Edit a Recipe
+        %h2 Edit {{ cocktail.name }}
         %span{:flex => ""}
         %md-button.md-icon-button{"ng-click" => "cancel()"}
           %md-icon{"aria-label" => "cancel"} close
