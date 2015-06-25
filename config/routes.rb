@@ -5,5 +5,7 @@ Rails.application.routes.draw do
 
   resources :cocktails, only: [:index, :show, :create, :update, :destroy]
   resources :ingredients, only: [:index]
-  resources :bars, only: [:index, :show, :create]
+  resources :bars, only: [:index, :show, :create] do
+      get 'available_cocktails', on: :collection
+  end
 end

@@ -2,6 +2,8 @@ require 'rails_helper'
 
 feature 'What can I make?', js: true do
   before(:each) do
+    @user = create(:user)
+    login_as(@user, scope: :user)
     @vodka = create(:ingredient, name: "Vodka")
     @ginger_beer = create(:ingredient, name: "Ginger Beer", ingredient_type: "Mixer")
     @lime = create(:ingredient, name: "Lime", ingredient_type: "Fruit")
@@ -23,11 +25,9 @@ feature 'What can I make?', js: true do
   end
 
   scenario 'Determining what I can make' do
-    user = create(:user)
-    login_as(user, scope: :user)
-    Bar.create!(user_id: user.id, ingredient_id: @vodka.id)
-    Bar.create!(user_id: user.id, ingredient_id: @ginger_beer.id)
-    Bar.create!(user_id: user.id, ingredient_id: @lime.id)
+    Bar.create!(user_id: @user.id, ingredient_id: @vodka.id)
+    Bar.create!(user_id: @user.id, ingredient_id: @ginger_beer.id)
+    Bar.create!(user_id: @user.id, ingredient_id: @lime.id)
     moscow = Cocktail.create!(name: "Moscow Mule",
                               description: 'Vodka and Ginger Beer',
                               instructions: "Do your thing")

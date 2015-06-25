@@ -9,6 +9,11 @@ class BarsController < ApplicationController
     render 'show', status: 201
   end
 
+  def available_cocktails
+    @cocktails = current_user.available_cocktails
+    render 'available_cocktails', status: 200
+  end
+
   private
   def bar_params
     params.require(:bar).permit(:user_id, :ingredient_id)

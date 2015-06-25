@@ -66,7 +66,37 @@ RSpec.describe BarsController, type: :controller do
       expect(Bar.last.ingredient_id).to eq @i1.id
       expect(Bar.last.ingredient.name).to eq "Whiskey"
     end
+  end
 
+  describe "#available_cocktails" do
+    before  do
+      @vodka = create(:ingredient, name: "Vodka")
+      @lime = create(:ingredient, name: "Lime", ingredient_type: "Fruit")
+      @ginger_beer = create(:ingredient, name: "Ginger Beer",
+                             ingredient_type: "Mixer")
+      Bar.create!(user_id: @user.id, ingredient_id: @vodka.id)
+      Bar.create!(user_id: @user.id, ingredient_id: @lime.id)
+      Bar.create!(user_id: @user.id, ingredient_id: @ginger_beer.id)
+      @moscow = Cocktail.create!(name: "Moscow Mule",
+                                 description: 'Vodka and Ginger Beer',
+                                 instructions: "Do your thing")
+      @moscow.ingredients << [@vodka, @ginger_beer, @lime]
+      xhr :get, :available_cocktails, format: :json
+    end
+
+    subject(:results) { JSON.parse(response.body) }
+
+    it 'should 200' do
+      expect(response.status).to eq 200
+    end
+
+    it 'should return at least one cocktail' do
+      expect(results.size).to be >= 1
+    end
+
+    it 'should include moscow mule' do
+      expect(results.map(&extract_name)).to include "Moscow Mule"
+    end
   end
 
 end

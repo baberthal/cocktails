@@ -27,8 +27,8 @@ RSpec.describe User, type: :model do
       Bar.create!(user_id: @u.id, ingredient_id: @lime.id)
       Bar.create!(user_id: @u.id, ingredient_id: @ginger_beer.id)
       @moscow = Cocktail.create!(name: "Moscow Mule",
-                                description: 'Vodka and Ginger Beer',
-                                instructions: "Do your thing")
+                                 description: 'Vodka and Ginger Beer',
+                                 instructions: "Do your thing")
       @moscow.ingredients << [@vodka, @ginger_beer, @lime]
     end
 
@@ -38,5 +38,8 @@ RSpec.describe User, type: :model do
       expect(@u.ingredients).to include @ginger_beer
     end
 
+    it 'can find cocktails that use those ingredients' do
+      expect(@u.available_cocktails).to include @moscow
+    end
   end
 end

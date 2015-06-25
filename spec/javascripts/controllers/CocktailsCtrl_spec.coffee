@@ -49,6 +49,22 @@ describe 'CocktailsCtrl', ->
           @http.whenGET('/ingredients').respond(200, @ingredients)
           @http.flush()
 
+      describe 'editing a cocktail', ->
+        it 'launches the dialog, then refreshes the cocktails', ->
+          toEdit =
+            id: 42
+            name: "Moscow Mule"
+            description: "A great cocktail on a hot day"
+            instructions: "Shake the vodka and lime juice well. Serve over ice and top with ginger beer"
+          mdDialog = @injector.get("$mdDialog")
+          spyOn(mdDialog, 'show').and.callThrough()
+          @scope.editRecipe(42)
+          expect(mdDialog.show).toHaveBeenCalled()
+          @http.whenGET('/cocktails/42').respond(200, toEdit)
+          @http.whenGET(@templateRequest).respond(200)
+          @http.whenGET('/ingredients').respond(200, @ingredients)
+          @http.flush()
+
       describe 'deleting a cocktail', ->
         it 'posts to the backend', ->
           cocktail =

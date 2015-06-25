@@ -8,22 +8,18 @@ angular.module('controllers')
     Bar.query().then (results) ->
       $scope.userBar = results
 
+    Bar.$get('/bars/available_cocktails.json').then (results) ->
+      $scope.availableCocktails = results
 
     Ingredient.query().then (results) ->
       $scope.ingredients = results
 
     $scope.addIngredient = (ingredient) ->
-      $scope.userBar.push(ingredient)
-      index = $scope.ingredients.indexOf(ingredient)
-      $scope.ingredients.splice(index, 1)
-
-    $scope.saveBar = (bar) ->
-      if $scope.currentUser
-        for item in $scope.userBar
-          do (item) ->
-            toCreate = new Bar
-            toCreate.userId = $scope.currentUser.id
-            toCreate.ingredient_id = item.id
-            toCreate.save()
+      newBarItem = new Bar
+      newBarItem.userId = $scope.currentUser.id
+      newBarItem.ingredientId = ingredient.id
+      newBarItem.create().then ->
+        Bar.query().then (results) ->
+          $scope.userBar = results
 
 ]

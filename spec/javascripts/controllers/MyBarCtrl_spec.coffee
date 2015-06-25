@@ -3,6 +3,11 @@
 describe 'MyBarCtrl', ->
   beforeEach ->
     @controller('MyBarCtrl', { $scope: @scope })
+    @user =
+      username: 'foobar1'
+      email: 'foobar1@example.com'
+      id: 37
+    @scope.currentUser = @user
     @Bar = @model('Bar')
     @Ingredient = @model('Ingredient')
     @ingredients = [
@@ -15,9 +20,9 @@ describe 'MyBarCtrl', ->
         name: 'Whiskey'
       }
     ]
-    @userBar = []
     templateRequest = new RegExp("\/templates\/*")
-    @http.expectGET('/bars').respond(200, @userBar)
+    @http.expectGET('/bars').respond(200)
+    @http.expectGET('/bars/available_cocktails.json').respond(200)
     @http.expectGET(templateRequest).respond(200)
     @http.whenGET('/ingredients').respond(@ingredients)
     @http.flush()
@@ -32,8 +37,14 @@ describe 'MyBarCtrl', ->
 
     describe 'adding ingredients to the bar', ->
       it 'adds an ingredient to the users bar', ->
+        @newItem =
+          userId: 37
+          name: 'Whiskey'
         @scope.addIngredient(@ingredients[1])
-        expect(@scope.userBar).toEqualData([@ingredients[1]])
+        @http.expectPOST('/bars').respond(201)
+        @http.whenGET('/bars').respond(200, @newItem)
+        @http.flush()
+        expect(@scope.userBar).toEqualData(@newItem)
 
 
 
