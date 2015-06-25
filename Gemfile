@@ -44,7 +44,6 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-theme'
   gem 'factory_girl_rails'
-  gem 'rb-fsevent', require: false if RUBY_PLATFORM =~ /darwin/i
   gem 'launchy'
   gem 'guard-rspec', require: false
   gem 'guard-livereload', require: false
@@ -62,4 +61,8 @@ group :development, :test do
   gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers'
   gem 'seed_dump'
   gem 'simplecov', require: false
+end
+
+group :development, :test, :darwin do
+  gem 'rb-fsevent', require: false
 end
