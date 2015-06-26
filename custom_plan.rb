@@ -30,7 +30,7 @@ class CustomPlan < Zeus::Rails
   end
 
   def teaspoon(argv=ARGV)
-    @console.execute({}, [argv[0]])
+    @console.execute(argv[0])
   end
 end
 

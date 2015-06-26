@@ -17,8 +17,16 @@ angular.module("cocktails")
         controller: 'MyBarCtrl'
       ).state('cocktails',
         url: '/cocktails'
+        abstract: 'true'
+        template: '<ui-view></ui-view>'
+      ).state('cocktails.browse',
+        url: '/browse'
         templateUrl: '/templates/cocktails.html'
         controller: 'CocktailsCtrl'
+      ).state('cocktails.view',
+        url: '/:id'
+        templateUrl: '/templates/cocktailShow.html'
+        controller: 'CocktailShowCtrl'
       ).state('ingredients',
         url: '/ingredients'
         templateUrl: '/templates/ingredients.html'

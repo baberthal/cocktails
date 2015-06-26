@@ -1,0 +1,15 @@
+%md-card
+  %md-toolbar.card-toolbar
+    .md-toolbar-tools
+      %span {{ cocktail.name }}
+  %md-card-content
+    %h4.md-title Description
+    %p {{ cocktail.description }}
+    %h4.md-title Instructions
+    %p {{ cocktail.instructions }}
+    .ingredients{"ng-show" => "hasIngredients"}
+      %h4.md-title Ingredients
+      %md-chips
+        %md-chip{"ng-repeat" => "ing in cocktail.ingredients"}
+          %strong {{ ing.name}}
+          %em ({{ ing.ingredientType }})

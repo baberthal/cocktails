@@ -1,4 +1,5 @@
 class CocktailsController < ApplicationController
+  before_filter :authenticate_user!, only: [:create, :update, :destroy]
   def index
     @cocktails = if params[:keywords]
                    Cocktail.where('name ilike ?', "%#{params[:keywords]}%")
@@ -30,6 +31,6 @@ class CocktailsController < ApplicationController
 
   private
   def cocktail_params
-    params.require(:cocktail).permit(:name, :instructions, :ingredients, :description)
+    params.require(:cocktail).permit(:name, :instructions, :description)
   end
 end

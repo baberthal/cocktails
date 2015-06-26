@@ -1,9 +1,11 @@
 angular.module('controllers')
   .controller("CocktailsCtrl", [
     '$scope',
+    '$state',
+    '$location',
     'Cocktail',
     '$mdDialog',
-    ($scope,Cocktail,$mdDialog) ->
+    ($scope,$state,$location,Cocktail,$mdDialog) ->
 
       queryCocktails = ->
         Cocktail.query().then (results) ->
@@ -11,6 +13,15 @@ angular.module('controllers')
 
       Cocktail.query().then (results) ->
         $scope.cocktailRecipes = results
+
+      $scope.canEdit = (cocktail)->
+        if $scope.currentUser.id == cocktail.userId
+          true
+        else
+          false
+
+      $scope.viewCocktail = (cocktail) ->
+        $location.path("/cocktails/#{cocktail.id}")
 
       $scope.addRecipe = (ev) ->
         $mdDialog.show(

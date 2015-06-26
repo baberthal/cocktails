@@ -7,10 +7,12 @@ describe 'CocktailsCtrl', ->
       {
         id: 2
         name: 'Margarita (Cadillac)'
+        userId: 4
       },
       {
         id: 1
         name: 'Margarita'
+        userId: 2
       }
     ]
     @ingredients = [
@@ -31,6 +33,22 @@ describe 'CocktailsCtrl', ->
     @http.flush()
 
   describe 'controller initialization', ->
+    describe 'utility functions', ->
+      it 'knows if the currentUser can edit the cocktail', ->
+        currentUser =
+          username: 'foobar1'
+          id: 4
+        @scope.currentUser = currentUser
+        expect(@scope.canEdit(@cocktailRecipes[0])).toBeTruthy()
+        expect(@scope.canEdit(@cocktailRecipes[1])).toBeFalsy()
+
+      it 'knows how view a cocktail', ->
+        location = @injector.get('$location')
+        spyOn(location, 'path')
+        @scope.viewCocktail(@cocktailRecipes[1])
+        expect(location.path).toHaveBeenCalledWith('/cocktails/1')
+
+
     describe 'cocktail recipe index', ->
       it 'sets up the list of recent cocktail recipes', ->
         expect(@scope.cocktailRecipes.length).toEqual(2)

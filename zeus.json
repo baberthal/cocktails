@@ -16,7 +16,9 @@
         },
         "test_environment": {
           "test_helper": {"test": ["rspec", "testrb"]},
-          "teaspoon": []
+          "teaspoon_console": {
+            "teaspoon": []
+          }
         }
       }
     }

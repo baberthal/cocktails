@@ -29,14 +29,10 @@ describe 'CocktailAddCtrl', ->
           {
             name: 'Kosher Salt'
             ingredientType: 'Garnish'
-            _lowername: 'kosher salt'
-            _lowertype: 'garnish'
           },
           {
             name: 'Lime Juice'
             ingredientType: 'Fruit Juice'
-            _lowername: 'lime juice'
-            _lowertype: 'fruit juice'
           }
         ]
         expect(@scope.ingredients).toEqualData(expected)
