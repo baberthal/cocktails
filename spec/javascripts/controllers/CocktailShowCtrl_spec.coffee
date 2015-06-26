@@ -2,7 +2,7 @@
 
 describe 'CocktailShowCtrl', ->
   beforeEach ->
-    @controller('CocktailShowCtrl', { $scope: @scope })
+    @setupController('CocktailShowCtrl')
 
   describe 'controller initialization', ->
     describe 'when the current cocktail has ingredients', ->
@@ -28,13 +28,10 @@ describe 'CocktailShowCtrl', ->
               ingredientType: 'Fruit Juice'
             }
           ]
-        @templateRequest = new RegExp("\/templates\/*")
-        @stateParams = @injector.get('$stateParams')
         @stateParams.id = 4
         request = new RegExp("\/cocktails\/*")
-        @http.expectGET(request).respond(200, @cocktail)
-        @http.expectGET(@templateRequest).respond(200)
-        @http.flush()
+        @http.whenGET(request).respond(200, @cocktail)
+        @templateExpectations()
 
       it 'knows the cocktail', ->
         expect(@scope.cocktail).toEqualData(@cocktail)
@@ -49,13 +46,10 @@ describe 'CocktailShowCtrl', ->
           name: 'Margarita'
           userId: 4
           ingredients:[ ]
-        @templateRequest = new RegExp("\/templates\/*")
-        @stateParams = @injector.get('$stateParams')
         @stateParams.id = 4
         request = new RegExp("\/cocktails\/*")
         @http.whenGET(request).respond(200, @cocktail)
-        @http.expectGET(@templateRequest).respond(200)
-        @http.flush()
+        @templateExpectations()
 
       it 'knows if a cocktail does not have ingredients', ->
         expect(@scope.hasIngredients).toBeFalsy()

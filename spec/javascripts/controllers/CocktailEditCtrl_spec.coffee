@@ -2,17 +2,15 @@
 
 describe 'CocktailEditCtrl', ->
   beforeEach ->
-    @controller('CocktailEditCtrl', {$scope: @scope, cocktailId: 3})
+    @setupController('CocktailEditCtrl', false, 3)
     @Cocktail = @model('Cocktail')
-    templateRequest = new RegExp("\/templates\/*")
     @oldCocktail =
       id: 3
       name: 'Margarita'
       description: 'A classic marg'
       instructions: 'Mix and serve over ice'
     @http.whenGET('/cocktails/3').respond(200, @oldCocktail)
-    @http.expectGET(templateRequest).respond(200)
-    @http.flush()
+    @templateExpectations()
 
   describe 'controller initialization', ->
     describe 'editing a cocktail', ->

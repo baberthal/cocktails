@@ -4,16 +4,11 @@ extractActions = (arr) -> a.action for a in arr
 
 describe 'MainCtrl', ->
   beforeEach ->
-    @controller('MainCtrl', { $scope: @scope })
+    @setupController('MainCtrl', true)
     @rootScope = @injector.get('$rootScope')
     @Auth = @model('Auth')
-    @user =
-      username: 'foobar1'
-      email: "foobar1@example.com"
     @http.whenPOST('/users/sign_in.json').respond(201, @user)
-    templateRequest = new RegExp("\/templates\/*")
-    @http.expectGET(templateRequest).respond(200)
-    @http.flush()
+    @templateExpectations()
 
   describe 'controller initialization', ->
     describe 'Auth', ->

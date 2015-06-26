@@ -2,12 +2,7 @@
 
 describe 'MyBarCtrl', ->
   beforeEach ->
-    @controller('MyBarCtrl', { $scope: @scope })
-    @user =
-      username: 'foobar1'
-      email: 'foobar1@example.com'
-      id: 37
-    @scope.currentUser = @user
+    @setupController('MyBarCtrl', true)
     @Bar = @model('Bar')
     @Ingredient = @model('Ingredient')
     @ingredients = [
@@ -20,12 +15,10 @@ describe 'MyBarCtrl', ->
         name: 'Whiskey'
       }
     ]
-    templateRequest = new RegExp("\/templates\/*")
-    @http.expectGET('/bars').respond(200)
-    @http.expectGET('/bars/available_cocktails.json').respond(200)
-    @http.expectGET(templateRequest).respond(200)
+    @http.whenGET('/bars').respond(200)
+    @http.whenGET('/bars/available_cocktails.json').respond(200)
     @http.whenGET('/ingredients').respond(@ingredients)
-    @http.flush()
+    @templateExpectations()
 
   describe 'controller initialization', ->
     describe 'listing ingredients to add', ->
@@ -41,10 +34,11 @@ describe 'MyBarCtrl', ->
           userId: 37
           name: 'Whiskey'
         @scope.addIngredient(@ingredients[1])
-        @http.expectPOST('/bars').respond(201)
-        @http.whenGET('/bars').respond(200, @newItem)
-        @http.flush()
+        @http.expectPOST('/bars').respond(201, @newItem)
+        @scope.userBar = @newItem
+        @http.expectGET('/bars').respond(200, @newItem)
         expect(@scope.userBar).toEqualData(@newItem)
+        @http.flush()
 
 
 

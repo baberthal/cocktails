@@ -2,7 +2,7 @@
 
 describe 'CocktailsCtrl', ->
   beforeEach ->
-    @controller('CocktailsCtrl', { $scope: @scope })
+    @setupController('CocktailsCtrl')
     @cocktailRecipes = [
       {
         id: 2
@@ -27,10 +27,8 @@ describe 'CocktailsCtrl', ->
         ingredientType: 'Spirit'
       }
     ]
-    @templateRequest = new RegExp("\/templates\/*")
-    @http.expectGET(@templateRequest).respond(200)
     @http.whenGET('/cocktails').respond(200, @cocktailRecipes)
-    @http.flush()
+    @templateExpectations()
 
   describe 'controller initialization', ->
     describe 'utility functions', ->

@@ -1,10 +1,9 @@
 #= require spec_helper
 
 describe 'SearchCtrl', ->
-  templateRequest = new RegExp("\/templates\/*")
   searchRequest = new RegExp("\/cocktails\/*")
   beforeEach ->
-    @controller('SearchCtrl', { $scope: @scope })
+    @setupController('SearchCtrl')
     @CocktailRecipe = @model('Cocktail')
     @searchResults = [
       {
@@ -16,10 +15,8 @@ describe 'SearchCtrl', ->
         name: 'Margarita'
       }
     ]
-    templateRequest = new RegExp("\/templates\/*")
-    @http.expectGET(templateRequest).respond(200)
     @http.whenGET(searchRequest).respond(200, @searchResults)
-    @http.flush()
+    @templateExpectations()
 
   describe 'controller initialization', ->
     describe 'when no search has been entered', ->
@@ -30,15 +27,13 @@ describe 'SearchCtrl', ->
       it 'calls the backend', ->
         @scope.keywords = "Marg"
         @scope.search(@scope.keywords)
-        @http.expectGET(templateRequest).respond(200)
-        @http.flush()
+        @templateExpectations()
 
       describe 'search()', ->
         it 'redirects to itself with a keyword param', ->
           keywords = 'foo'
           @scope.search(keywords)
-          @http.expectGET(templateRequest).respond(200)
-          @http.flush()
+          @templateExpectations()
           expect(@location.path()).toBe('/search')
           expect(@location.search()).toEqualData({keywords: keywords})
 

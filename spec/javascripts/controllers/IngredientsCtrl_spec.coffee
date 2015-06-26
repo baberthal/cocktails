@@ -2,7 +2,7 @@
 
 describe 'IngredientsCtrl', ->
   beforeEach ->
-    @controller('IngredientsCtrl', { $scope: @scope })
+    @setupController('IngredientsCtrl')
     @Ingredient = @model('Ingredient')
     @ingredients = [
       {
@@ -14,10 +14,8 @@ describe 'IngredientsCtrl', ->
         name: 'Whiskey'
       }
     ]
-    templateRequest = new RegExp("\/templates\/*")
-    @http.expectGET(templateRequest).respond(200)
     @http.whenGET('/ingredients').respond(@ingredients)
-    @http.flush()
+    @templateExpectations()
 
   describe 'controller initialization', ->
     describe 'ingredient index', ->

@@ -2,9 +2,8 @@
 
 describe 'CocktailAddCtrl', ->
   beforeEach ->
-    @controller('CocktailAddCtrl', { $scope: @scope })
+    @setupController('CocktailAddCtrl')
     @mdDialog = @injector.get('$mdDialog')
-    @location = @injector.get('$location')
     @Cocktail = @model('Cocktail')
     spyOn(@mdDialog, 'cancel')
     @ingredients = [
@@ -17,25 +16,13 @@ describe 'CocktailAddCtrl', ->
         ingredientType: 'Fruit Juice'
       }
     ]
-    templateRequest = new RegExp("\/templates\/*")
-    @http.expectGET(templateRequest).respond(200)
     @http.whenGET('/ingredients').respond(200, @ingredients)
-    @http.flush()
+    @templateExpectations()
 
   describe 'controller initialization', ->
     describe 'listing available ingredients', ->
       it 'sets up the list of available ingredients', ->
-        expected = [
-          {
-            name: 'Kosher Salt'
-            ingredientType: 'Garnish'
-          },
-          {
-            name: 'Lime Juice'
-            ingredientType: 'Fruit Juice'
-          }
-        ]
-        expect(@scope.ingredients).toEqualData(expected)
+        expect(@scope.ingredients).toEqualData(@ingredients)
 
     describe '$mdDialog', ->
       it 'knows how to close the dialog', ->

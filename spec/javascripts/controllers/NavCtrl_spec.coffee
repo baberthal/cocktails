@@ -4,10 +4,8 @@ extractSrefs = (arr) -> a.action for a in arr
 
 describe 'NavCtrl', ->
   beforeEach ->
-    @controller('NavCtrl', { $scope: @scope })
-    templateRequest = new RegExp("\/templates\/*")
-    @http.expectGET(templateRequest).respond(200)
-    @http.flush()
+    @setupController('NavCtrl')
+    @templateExpectations()
     @mdSidenav = @injector.get('$mdSidenav')
 
   describe 'controller initialization', ->

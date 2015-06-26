@@ -2,15 +2,17 @@
 
 describe 'AuthCtrl', ->
   beforeEach ->
-    @controller('AuthCtrl', { $scope: @scope })
+    @setupController('AuthCtrl')
+    # @controller('AuthCtrl', { $scope: @scope })
     @Auth = @model('Auth')
-    templateRequest = new RegExp("\/templates\/*")
+    # templateRequest = new RegExp("\/templates\/*")
     @user =
       username: 'foobar1'
       email: "foobar1@example.com"
       password: 'foobar1secret'
-    @http.expectGET(templateRequest).respond(200)
-    @http.flush()
+    @templateExpectations()
+    # @http.expectGET(templateRequest).respond(200)
+    # @http.flush()
 
   describe 'controller initialization', ->
     describe 'logging in', ->
