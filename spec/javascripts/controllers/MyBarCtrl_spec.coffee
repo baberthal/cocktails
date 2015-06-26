@@ -5,16 +5,7 @@ describe 'MyBarCtrl', ->
     @setupController('MyBarCtrl', true)
     @Bar = @model('Bar')
     @Ingredient = @model('Ingredient')
-    @ingredients = [
-      {
-        id: 1
-        name: 'Gin'
-      },
-      {
-        id: 2
-        name: 'Whiskey'
-      }
-    ]
+    @loadFixtures()
     @http.whenGET('/bars').respond(200)
     @http.whenGET('/bars/available_cocktails.json').respond(200)
     @http.whenGET('/ingredients').respond(@ingredients)

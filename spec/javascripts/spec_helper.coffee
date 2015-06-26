@@ -42,6 +42,75 @@ beforeEach ->
         id: 37
       @scope.currentUser = @user
 
+  @loadFixtures = ->
+    @newUser =
+      username: 'foobar1'
+      email: "foobar1@example.com"
+      password: 'foobar1secret'
+
+    @ingredients = [
+      {
+        name: 'Kosher Salt'
+        ingredientType: 'Garnish'
+      },
+      {
+        name: 'Lime Juice'
+        ingredientType: 'Fruit Juice'
+      }
+    ]
+
+    @oldCocktail =
+      id: 3
+      name: 'Margarita'
+      description: 'A classic marg'
+      instructions: 'Mix and serve over ice'
+
+    @cocktailRecipes = [
+      {
+        id: 2
+        name: 'Margarita (Cadillac)'
+        userId: 4
+      },
+      {
+        id: 1
+        name: 'Margarita'
+        userId: 2
+      }
+    ]
+
+    @cocktail =
+      id: 2
+      name: 'Margarita'
+      userId: 4
+      ingredients:[
+        {
+          name: 'Tequila'
+          id: 1
+          ingredientType: 'Spirit'
+        },
+        {
+          name: 'Cointreau'
+          id: 2
+          ingredientType: 'Liqueur'
+        },
+        {
+          name: 'Lime Juice'
+          id: 3
+          ingredientType: 'Fruit Juice'
+        }
+      ]
+
+    @searchResults = [
+      {
+        id: 2
+        name: 'Margarita (Cadillac)'
+      },
+      {
+        id: 1
+        name: 'Margarita'
+      }
+    ]
+
 
   @templateExpectations = ->
     request = new RegExp("\/templates\/*")
@@ -53,10 +122,6 @@ beforeEach ->
       @scope = $rootScope.$new()
       @compile = _$compile_
       @http = _$httpBackend_
-
-# beforeEach ->
-#   templateRequest = new RegExp("\/templates\/*")
-#   @http.expectGET(templateRequest).respond(200)
 
 afterEach ->
   @http.verifyNoOutstandingExpectation()

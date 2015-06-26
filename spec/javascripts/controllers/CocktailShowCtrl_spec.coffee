@@ -3,31 +3,11 @@
 describe 'CocktailShowCtrl', ->
   beforeEach ->
     @setupController('CocktailShowCtrl')
+    @loadFixtures()
 
   describe 'controller initialization', ->
     describe 'when the current cocktail has ingredients', ->
       beforeEach ->
-        @cocktail =
-          id: 2
-          name: 'Margarita'
-          userId: 4
-          ingredients:[
-            {
-              name: 'Tequila'
-              id: 1
-              ingredientType: 'Spirit'
-            },
-            {
-              name: 'Cointreau'
-              id: 2
-              ingredientType: 'Liqueur'
-            },
-            {
-              name: 'Lime Juice'
-              id: 3
-              ingredientType: 'Fruit Juice'
-            }
-          ]
         @stateParams.id = 4
         request = new RegExp("\/cocktails\/*")
         @http.whenGET(request).respond(200, @cocktail)

@@ -4,16 +4,7 @@ describe 'IngredientsCtrl', ->
   beforeEach ->
     @setupController('IngredientsCtrl')
     @Ingredient = @model('Ingredient')
-    @ingredients = [
-      {
-        id: 1
-        name: 'Gin'
-      },
-      {
-        id: 2
-        name: 'Whiskey'
-      }
-    ]
+    @loadFixtures()
     @http.whenGET('/ingredients').respond(@ingredients)
     @templateExpectations()
 

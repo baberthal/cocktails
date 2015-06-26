@@ -4,11 +4,7 @@ describe 'CocktailEditCtrl', ->
   beforeEach ->
     @setupController('CocktailEditCtrl', false, 3)
     @Cocktail = @model('Cocktail')
-    @oldCocktail =
-      id: 3
-      name: 'Margarita'
-      description: 'A classic marg'
-      instructions: 'Mix and serve over ice'
+    @loadFixtures()
     @http.whenGET('/cocktails/3').respond(200, @oldCocktail)
     @templateExpectations()
 

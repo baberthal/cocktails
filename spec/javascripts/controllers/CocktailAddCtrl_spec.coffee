@@ -6,16 +6,7 @@ describe 'CocktailAddCtrl', ->
     @mdDialog = @injector.get('$mdDialog')
     @Cocktail = @model('Cocktail')
     spyOn(@mdDialog, 'cancel')
-    @ingredients = [
-      {
-        name: 'Kosher Salt'
-        ingredientType: 'Garnish'
-      },
-      {
-        name: 'Lime Juice'
-        ingredientType: 'Fruit Juice'
-      }
-    ]
+    @loadFixtures()
     @http.whenGET('/ingredients').respond(200, @ingredients)
     @templateExpectations()
 

@@ -3,30 +3,7 @@
 describe 'CocktailsCtrl', ->
   beforeEach ->
     @setupController('CocktailsCtrl')
-    @cocktailRecipes = [
-      {
-        id: 2
-        name: 'Margarita (Cadillac)'
-        userId: 4
-      },
-      {
-        id: 1
-        name: 'Margarita'
-        userId: 2
-      }
-    ]
-    @ingredients = [
-      {
-        id: 1
-        name: 'Angoustora Bitters'
-        ingredientType: 'Bitters'
-      },
-      {
-        id: 2
-        name: 'Tequila'
-        ingredientType: 'Spirit'
-      }
-    ]
+    @loadFixtures()
     @http.whenGET('/cocktails').respond(200, @cocktailRecipes)
     @templateExpectations()
 

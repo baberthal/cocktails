@@ -5,16 +5,6 @@ describe 'SearchCtrl', ->
   beforeEach ->
     @setupController('SearchCtrl')
     @CocktailRecipe = @model('Cocktail')
-    @searchResults = [
-      {
-        id: 2
-        name: 'Margarita (Cadillac)'
-      },
-      {
-        id: 1
-        name: 'Margarita'
-      }
-    ]
     @http.whenGET(searchRequest).respond(200, @searchResults)
     @templateExpectations()
 
