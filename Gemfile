@@ -46,6 +46,7 @@ group :development, :test do
   gem 'pry-theme'
   gem 'factory_girl_rails'
   gem 'launchy'
+  gem 'magic_lamp'
   gem 'guard-rspec', require: false
   gem 'guard-livereload', require: false
   gem 'guard-bundler', require: false
