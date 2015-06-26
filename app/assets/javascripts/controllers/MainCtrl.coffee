@@ -26,7 +26,7 @@ angular.module('controllers').controller "MainCtrl", [
         icon: "live_help"
       ,
         name: "Browse Cocktails"
-        action: 'cocktails'
+        action: 'cocktails.browse'
         icon: 'local_bar'
       ,
         name: "Browse Ingredients"

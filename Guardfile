@@ -37,7 +37,7 @@ guard 'coffeescript', coffeescript_options do
   coffeescript_options[:patterns].each { |pattern| watch(pattern) }
 end
 
-guard 'livereload' do
+guard 'livereload', host: '127.0.0.1' do
   watch(%r{app/views/.+\.(erb|haml|slim)$})
   watch(%r{app/helpers/.+\.rb})
   watch(%r{public/.+\.(css|js|html)})

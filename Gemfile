@@ -20,6 +20,7 @@ gem 'inline_svg'
 gem 'devise'
 gem 'angular_rails_csrf'
 gem 'foreman'
+gem 'omniauth-google-oauth2'
 
 group :production, :staging do
   gem 'rails_12factor'

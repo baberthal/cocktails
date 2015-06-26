@@ -15,7 +15,7 @@ angular.module('controllers')
         $scope.cocktailRecipes = results
 
       $scope.canEdit = (cocktail)->
-        if $scope.currentUser.id == cocktail.userId
+        if $scope.currentUser and $scope.currentUser.id == cocktail.userId
           true
         else
           false
