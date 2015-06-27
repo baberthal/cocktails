@@ -5,11 +5,19 @@ angular.module('controllers').controller "CocktailAddCtrl", [
   'Cocktail',
   '$mdDialog',
   ($scope, $state, Ingredient, Cocktail, $mdDialog) ->
+    self = @
+
     $scope.isSubmitting = false
-    self = this
+
+    Ingredient.query().then (results) ->
+      $scope.ingredients = results
 
     $scope.cancel = ->
       $mdDialog.cancel()
+
+    self.selectedItem = null
+    self.searchText = null
+    self.querySearch = querySearch
 
     $scope.cocktail = new Cocktail
 
@@ -21,7 +29,15 @@ angular.module('controllers').controller "CocktailAddCtrl", [
         $scope.isSubmitting = false
         $mdDialog.hide()
 
-    Ingredient.query().then (results) ->
-      $scope.ingredients = results
+    mapIngredients = (ingredients) ->
+      return ingredients.map( (ing) ->
+        ing._lowername = ing.name.toLowerCase()
+        return ing
+      )
+
+    querySearch = (query) ->
+      results = if query then $scope.ingredients.filter( createFilterFor(query)) else []
+
+
 
 ]
