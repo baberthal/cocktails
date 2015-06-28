@@ -37,6 +37,9 @@ module Cocktails
       config.assets.paths << bower_path
     end
 
+    config.assets.paths << Rails.root.join("public", "assets", "stylesheets")
+    config.assets.paths << Rails.root.join("public", "assets", "javascripts")
+
     config.to_prepare do
       DeviseController.respond_to :html, :json
     end
