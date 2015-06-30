@@ -1,0 +1,7 @@
+include ../components/navbar/navbar.jade
+.main(ng-controller="MainController", layout="row")
+  include ../components/sidenav/sidenav.jade
+  md-content(layout="column", flex, layout-padding, style="background-color: #f6f6f6 !important;")
+    ui-view
+
+//  vim: set ts=8 sw=2 tw=0 ft=jade et :

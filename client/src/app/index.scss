@@ -1,0 +1,81 @@
+/**
+ *  Do not remove this comments bellow. It's the markers used by wiredep to inject
+ *  sass dependencies when defined in the bower.json of your dependencies
+ */
+// bower:scss
+// endbower
+
+@import '../../bower_components/angular-material/angular-material.css';
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+.avatar {
+  position: relative !important;
+  width: 128px !important;
+  height: 128px !important;
+  border-radius: 50% !important;
+  display: inline-block !important;
+  overflow: hidden !important;
+  margin: 0px !important;
+  vertical-align: middle !important;
+  zoom: 0.70 !important;
+  transform: translateZ(0) !important;
+  -webkit-transform: scale(0.70) !important;
+  -moz-transform: scale(0.70) !important;
+}
+
+.card-toolbar {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
+.sidenav-list .md-button {
+  color: inherit;
+  text-align: left;
+  width: 97%;
+  margin-right: 0px;
+}
+
+.side-sidenav {
+  height: 100%;
+}
+
+.md-button.md-icon-button {
+  margin: 0 0.6rem;
+  // height: 4.8rem;
+  min-width: 0;
+  // line-height: 4.8rem;
+  padding-left: 0;
+  padding-right: 0;
+  width: 4.8rem;
+  vertical-align: middle;
+}
+
+.md-toolbar-icon-button {
+  line-height: 64px;
+  height: 64px;
+  vertical-align: middle;
+}
+
+.left-align {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.italic {
+  font-style: italic;
+}
+/**
+ *  Do not remove this comments bellow. It's the markers used by gulp-inject to inject
+ *  all your sass files automatically
+ */
+// injector
+// endinjector

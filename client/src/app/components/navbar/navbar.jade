@@ -1,0 +1,13 @@
+md-toolbar.md-whiteframe-z2(layout="row", ng-controller="NavController as nav")
+  .md-toolbar-tools
+    md-button.md-icon-button.md-toolbar-icon-button(aria-label="settings", hide-gt-md, ng-click="toggleLeft()")
+      md-icon menu
+    h2
+      span
+        a(ui-sref='home') Cocktails!
+    span(flex)
+    md-button.md-icon-button.md-toolbar-icon-button(aria-label="search", ui-sref="search")
+      md-icon search
+
+
+//  vim: set ts=8 sw=2 tw=0 ft=jade et :
