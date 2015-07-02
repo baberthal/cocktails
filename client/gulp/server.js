@@ -52,7 +52,7 @@ browserSync.use(browserSyncSpa({
 }));
 
 gulp.task('rails', function() {
-  exec('rails s -b 0.0.0.0');
+  exec('zeus server -b 0.0.0.0');
 });
 
 gulp.task('serve', ['watch'], function () {

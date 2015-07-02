@@ -39,16 +39,16 @@ angular.module "cocktails"
 
       $scope.register = (ev) ->
         $mdDialog.show(
-          controller: 'AuthCtrl'
-          templateUrl: '/templates/register.tmpl.html'
+          controller: 'DialogController'
+          templateUrl: 'app/components/dialogs/register.tmpl.html'
           parent: angular.element(document.body)
           targetEvent: ev
         )
 
       $scope.login = (ev) ->
         $mdDialog.show(
-          controller: 'AuthCtrl'
-          templateUrl: '/templates/login.tmpl.html'
+          controller: 'DialogController'
+          templateUrl: 'app/components/dialogs/login.tmpl.html'
           parent: angular.element(document.body)
           targetEvent: ev
         )

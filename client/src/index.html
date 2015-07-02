@@ -20,11 +20,85 @@
     <!-- endinject -->
     <!-- endbuild -->
   </head>
-  <body>
+  <body layout="column">
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <div ui-view></div>
+    <md-toolbar layout="row" ng-controller="NavController as nav" class="md-whiteframe-z2">
+      <div class="md-toolbar-tools">
+        <md-button aria-label="settings" hide-gt-md="hide-gt-md" ng-click="toggleLeft()" class="md-icon-button md-toolbar-icon-button">
+          <md-icon>menu</md-icon>
+        </md-button>
+        <h2>
+          <span>
+            <a ui-sref="home">Cocktails!</a>
+          </span>
+        </h2>
+        <span flex="flex"></span>
+        <md-button aria-label="search" ui-sref="search" class="md-icon-button md-toolbar-icon-button">
+          <md-icon>search</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <div class="main" ng-controller="MainController" layout="row" flex>
+      <md-sidenav md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" layout="column" class="md-sidenav-left md-whiteframe-z2">
+        <md-toolbar layout="row" class="md-hue-1 md-medium-tall md-whiteframe-z1">
+          <md-list>
+            <md-list-item style="vertical-align: middle;" ng-hide="signedIn()" class="md-2-line">
+              <img src="assets/images/avatar-1.svg" alt="Default avatar"/>
+              <div class="md-list-item-text">
+                <h3 class="user-info">{{ defaultUser.username }}</h3>
+                <h4 class="user-info">{{ defaultUser.email }}</h4>
+              </div>
+            </md-list-item>
+            <md-list-item style="vertical-align: middle;" ng-show="signedIn()" class="md-2-line">
+              <img gravatar-src="{{currentUser.email}}" alt="Gravatar"/>
+              <div class="md-list-item-text">
+                <h3 class="user-info">{{ currentUser.username }}</h3>
+                <h4 class="user-info">{{ currentUser.email }}</h4>
+              </div>
+            </md-list-item>
+          </md-list>
+          <md-button aria-label="close menu" ng-click="closeLeft()" class="md-icon-button">
+            <md-icon hide-gt-md="hide-gt-md">close</md-icon>
+          </md-button>
+        </md-toolbar>
+        <div ng-if="alert"><br/><b layout="row" layout-align="center center" class="md-padding">{{ alert }}</b></div>
+        <md-list>
+          <md-list-item ng-repeat="it in menu">
+            <md-button ng-class="{'selected' : it === nav.selected }" ng-click="goTo(it.action)" flex="flex" class="block-button left-align">
+              <md-icon>{{ it.icon }}</md-icon><span class="sidenav-button">{{ it.name }}</span>
+            </md-button>
+          </md-list-item>
+        </md-list>
+        <md-divider></md-divider>
+        <md-list>
+          <md-list-item ng-show="signedIn()">
+            <md-button ng-click="goTo(myAccount)" flex="flex" class="block-button left-align md-primary">
+              <md-icon>person</md-icon><span class="sidenav-button">My Account</span>
+            </md-button>
+          </md-list-item>
+          <md-list-item ng-show="signedIn()">
+            <md-button ng-click="logout()" flex="flex" class="block-button left-align md-warn">
+              <md-icon>exit_to_app</md-icon><span class="sidenav-button">Log Out</span>
+            </md-button>
+          </md-list-item>
+          <md-list-item ng-hide="signedIn()">
+            <md-button ng-click="register()" flex="flex" class="block-button left-align md-primary">
+              <md-icon>person</md-icon><span class="sidenav-button">Create an Account</span>
+            </md-button>
+          </md-list-item>
+          <md-list-item ng-hide="signedIn()">
+            <md-button ng-click="login()" flex="flex" class="block-button left-align md-primary">
+              <md-icon>account_circle</md-icon><span class="sidenav-button">Log In</span>
+            </md-button>
+          </md-list-item>
+        </md-list>
+      </md-sidenav>
+      <md-content layout="column" flex layout-padding style="background-color: #f6f6f6 !important;">
+        <ui-view></ui-view>
+      </md-content>
+    </div>
 
     <!-- build:js(src) scripts/vendor.js -->
     <!-- bower:js -->
