@@ -1,1 +1,7 @@
-//  vim: set ts=8 sw=2 tw=0 ft=jade et :
+h1.text-center.md-display-3 Recently Added Recipes
+
+div(layout="column", layout-align="center")
+  recipe-card(ng-repeat="cocktailRecipe in cocktailRecipes")
+
+md-button#add-a-recipe.md-fab(aria-label="Add a recipe", ng-click="addRecipe()")
+  md-icon add

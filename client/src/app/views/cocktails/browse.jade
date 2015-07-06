@@ -1,0 +1,20 @@
+h1.text-center.md-display-3 Browse Cocktails
+
+md-content.md-whiteframe-z1(layout="column")
+  md-toolbar.md-hue-1(layout="row")
+    .md-toolbar-tools
+      h2 Cocktails
+      span(flex)
+      md-button.md-icon-button(aria-label="show advanced form")
+        md-icon more_vert
+  md-sidenav.md-whiteframe-z2(md-component-id="cocktailBrowseLeft", md-is-locked-open="$mdMedia('gt-sm')", layout="column")
+    md-content(layout="row", layout-padding, flex)
+      form(flex)
+        md-input-container(flex)
+          label(for="searchInput") Search Cocktails...
+          input#searchInput(type="text", ng-model="searchKeywords")
+    md-content(flex, role="navigation")
+      md-list(layout-padding)
+        md-list-item(ng-repeat="cocktail in cocktails", ng-click="showCocktail(cocktail.id)")
+          p {{ cocktail.name }}
+          md-divider(ng-if="!$last")

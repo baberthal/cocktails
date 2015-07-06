@@ -1,50 +1,54 @@
-md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id="left", md-is-locked-open="$mdMedia('gt-md')", layout="column")
-  md-toolbar.md-hue-1.md-medium-tall.md-whiteframe-z1(layout="row")
+.main(layout="row", flex, layout-fill)
+  md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id="left", md-is-locked-open="$mdMedia('gt-md')", layout="column", style="height: 100%;")
+    md-toolbar.md-hue-1.md-medium-tall.md-whiteframe-z1(layout="row")
+
+      md-list
+        md-list-item.md-2-line(style="vertical-align: middle;", ng-hide="signedIn()")
+          .md-list-item-text
+            h3 {{ defaultUser.username }}
+            h4 {{ defaultUser.email }}
+
+        md-list-item.md-2-line(style="vertical-align: middle;", ng-show="signedIn()")
+          .md-list-item-text
+            h3 {{ currentUser.username }}
+            h4 {{ currentUser.email }}
+
+      md-button.md-icon-button(aria-label="close menu", ng-click="closeLeft()")
+        md-icon(hide-gt-md) close
+
+    div(ng-if='alert')
+      br
+      b.md-padding(layout="row", layout-align="center center") {{ alert }}
 
     md-list
-      md-list-item.md-2-line(style="vertical-align: middle;", ng-hide="signedIn()")
-        .md-list-item-text
-          h3 {{ defaultUser.username }}
-          h4 {{ defaultUser.email }}
+      md-list-item(ng-repeat="it in menu")
+        md-button.block-button.left-align(ng-class="{'selected' : it === nav.selected }", ng-click="goTo(it.action)", flex)
+          md-icon {{ it.icon }}
+          | {{ it.name }}
+    md-divider
 
-      md-list-item.md-2-line(style="vertical-align: middle;", ng-show="signedIn()")
-        .md-list-item-text
-          h3 {{ currentUser.username }}
-          h4 {{ currentUser.email }}
+    md-list
+      md-list-item(ng-show="signedIn()")
+        md-button.block-button.left-align.md-primary(ng-click="goTo(myAccount)", flex)
+          md-icon person
+          | My Account
 
-    md-button.md-icon-button(aria-label="close menu", ng-click="closeLeft()")
-      md-icon(hide-gt-md) close
+      md-list-item(ng-show="signedIn()")
+        md-button.block-button.left-align.md-warn(ng-click="logout()", flex)
+          md-icon exit_to_app
+          | Log Out
 
-  div(ng-if='alert')
-    br
-    b.md-padding(layout="row", layout-align="center center") {{ alert }}
+      md-list-item(ng-hide="signedIn()")
+        md-button.block-button.left-align.md-primary(ng-click="register()", flex)
+          md-icon person
+          | Create an Account
 
-  md-list
-    md-list-item(ng-repeat="it in menu")
-      md-button.block-button.left-align(ng-class="{'selected' : it === nav.selected }", ng-click="goTo(it.action)", flex)
-        md-icon {{ it.icon }}
-        | {{ it.name }}
-  md-divider
+      md-list-item( "ng-hide"="signedIn()" )
+        md-button.block-button.left-align.md-primary("ng-click"="login()", flex)
+          md-icon account_circle
+          | Log In
 
-  md-list
-    md-list-item(ng-show="signedIn()")
-      md-button.block-button.left-align.md-primary(ng-click="goTo(myAccount)", flex)
-        md-icon person
-        | My Account
-
-    md-list-item(ng-show="signedIn()")
-      md-button.block-button.left-align.md-warn(ng-click="logout()", flex)
-        md-icon exit_to_app
-        | Log Out
-
-    md-list-item(ng-hide="signedIn()")
-      md-button.block-button.left-align.md-primary(ng-click="register()", flex)
-        md-icon person
-        | Create an Account
-
-    md-list-item( "ng-hide"="signedIn()" )
-      md-button.block-button.left-align.md-primary("ng-click"="login()", flex)
-        md-icon account_circle
-        | Log In
+  md-content(layout="column" flex layout-padding style="background-color: #f6f6f6 !important;")
+    ui-view
 
 //  vim: set ts=8 sw=2 tw=0 ft=jade et :

@@ -20,7 +20,7 @@
     <!-- endinject -->
     <!-- endbuild -->
   </head>
-  <body layout="column">
+  <body layout=column>
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -29,12 +29,7 @@
         <md-button aria-label="settings" hide-gt-md="hide-gt-md" ng-click="toggleLeft()" class="md-icon-button md-toolbar-icon-button">
           <md-icon>menu</md-icon>
         </md-button>
-        <h2>
-          <span>
-            <a ui-sref="home">Cocktails!</a>
-          </span>
-        </h2>
-        <span flex="flex"></span>
+        <h2><span><a ui-sref="home">Cocktails!</a></span></h2><span flex="flex"></span>
         <md-button aria-label="search" ui-sref="search" class="md-icon-button md-toolbar-icon-button">
           <md-icon>search</md-icon>
         </md-button>
@@ -45,14 +40,14 @@
         <md-toolbar layout="row" class="md-hue-1 md-medium-tall md-whiteframe-z1">
           <md-list>
             <md-list-item style="vertical-align: middle;" ng-hide="signedIn()" class="md-2-line">
-              <img src="assets/images/avatar-1.svg" alt="Default avatar"/>
+              <md-icon md-svg-icon="defaultAvatar" alt="default avatar" class="avatar"></md-icon>
               <div class="md-list-item-text">
                 <h3 class="user-info">{{ defaultUser.username }}</h3>
                 <h4 class="user-info">{{ defaultUser.email }}</h4>
               </div>
             </md-list-item>
             <md-list-item style="vertical-align: middle;" ng-show="signedIn()" class="md-2-line">
-              <img gravatar-src="{{currentUser.email}}" alt="Gravatar"/>
+              <img gravatar-src="currentUser.email" alt="Gravatar" class="avatar"/>
               <div class="md-list-item-text">
                 <h3 class="user-info">{{ currentUser.username }}</h3>
                 <h4 class="user-info">{{ currentUser.email }}</h4>

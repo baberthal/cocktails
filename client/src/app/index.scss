@@ -6,6 +6,7 @@
 // endbower
 
 @import '../../bower_components/angular-material/angular-material.css';
+@import './views/cocktails/cocktails.scss';
 
 .browsehappy {
   margin: 0.2em 0;
@@ -14,10 +15,14 @@
   padding: 0.2em 0;
 }
 
+.main-content {
+  height: 100%;
+}
+
 .avatar {
   position: relative !important;
-  width: 128px !important;
-  height: 128px !important;
+  width: 96px !important;
+  height: 96px !important;
   border-radius: 50% !important;
   display: inline-block !important;
   overflow: hidden !important;

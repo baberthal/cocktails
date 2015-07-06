@@ -1,0 +1,33 @@
+md-dialog(aria-label="Edit Recipe", flex="66")
+  form#recipeForm(name="recipeEditForm", ng-submit="saveRecipe(cocktail)")
+    md-toolbar
+      .md-toolbar-tools
+        h2 Edit {{ cocktail.name }}
+        span(flex)
+        md-button.md-icon-button(ng-click="cancel()")
+          md-icon(aria-label="cancel") close
+
+    md-dialog-content
+      md-input-container
+        label Name
+        input(type="text", name="name", ng-model="cocktail.name")
+
+      md-input-container
+        label Description
+        input(type="text", name="description", ng-model="cocktail.description")
+
+      md-input-container
+        label Instructions
+        input(type="text", name="instructions", ng-model="cocktail.instructions")
+
+      md-chips(ng-show="cocktail.ingredients")
+        md-chip(ng-repeat="ing in cocktail.ingredients")
+          strong {{ ing.name}}
+          em ({{ ing.ingredientType }})
+
+
+    .md-actions
+      md-button(type="submit") Save
+
+
+
